@@ -1,6 +1,8 @@
 { config, lib, pkgs, userInfo, ... }: {
   imports = [
     ./system/hardware-config.nix
+    
+    ./pkgs/services/syncthing
   ];
 
   boot.loader = {
