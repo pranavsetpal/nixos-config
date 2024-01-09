@@ -12,22 +12,30 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }: {
-    nixosConfigurations.portable = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
+  outputs = { self, nixpkgs, home-manager }: 
+    let
+      userInfo = rec {
+        name = "pranav";
+        fullname = "pranavsetpal";
+        email = "pranav.setpal@gmail.com";
+        homedir = "/home/${name}";
+      };
+    in {
+      nixosConfigurations.portable = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit userInfo; };
+        modules = [
+          ./nixos-config.nix
 
-        ./nixos-config.nix
-
-        home-manager.nixosModules.home-manager {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.pranav.imports = [ ./hm-config.nix ];
-          };
-        }
-
-      ];
+          home-manager.nixosModules.home-manager {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit userInfo; };
+              users."${userInfo.name}".imports = [ ./hm-config.nix ];
+            };
+          }
+        ];
+      };
     };
-  };
 }

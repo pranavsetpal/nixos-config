@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, userInfo, ... }: {
   imports = [
     ./system/hardware-config.nix
   ];
@@ -71,7 +71,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.pranav = {
+  users.users."${userInfo.name}" = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [

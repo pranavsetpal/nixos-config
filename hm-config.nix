@@ -1,21 +1,20 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, userInfo, ... }: {
   home.stateVersion = "23.11"; # Initial Install Version; Don't change
   programs.home-manager.enable = true;
 
-  home.username = "pranav";
-  home.homeDirectory = "/home/pranav";
+  home.username = userInfo.name;
+  home.homeDirectory = userInfo.homedir;
 
   imports = [
     # ./pkgs/neovim
-    ./pkgs/git
-    ./pkgs/kitty
+    ./pkgs/programs/git
+    ./pkgs/programs/kitty
   ];
 
 
   home.packages = with pkgs; [
     neovim
     mpv
-    syncthing
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
