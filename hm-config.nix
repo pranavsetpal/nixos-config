@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, lib, pkgs, ... }: {
   home.stateVersion = "23.11"; # Initial Install Version; Don't change
   programs.home-manager.enable = true;
 
@@ -6,12 +6,13 @@
   home.homeDirectory = "/home/pranav";
 
   imports = [
-    ./pkgs/neovim
+    # ./pkgs/neovim
     ./pkgs/git
   ];
 
 
   home.packages = with pkgs; [
+    neovim
     mpv
     syncthing
 
