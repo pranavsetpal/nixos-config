@@ -20,38 +20,6 @@ map('', '<A-e>', '4j'); map('', '<A-i>', '4k')
 map('', "<C-y>", '"+y')
 map('', "<C-p>", '"+p')
 
-
--- vim.cmd("packadd packer.nvim")
--- require("packer").startup(function(use)
--- 	use{"wbthomason/packer.nvim"} -- Plugin manager
---
--- 	--- Visuals
--- 	use("navarasu/onedark.nvim") -- Onedark Colorscheme
--- 	use{"sheerun/vim-polyglot"} -- Extended syntax highlighting support
--- 	use{"nvim-treesitter/nvim-treesitter", run=":TSUpdate"}
---
--- 	--- Editing
--- 	use{"alvan/vim-closetag"} -- Autoclose HTML tags
--- 	use{"raimondi/delimitmate"} -- Autoclose and manage brackets/quotes
--- 	use{"tpope/vim-surround"} -- Allow quickly change brackets,quotes,tags
--- 	use{"tomtom/tcomment_vim"} -- Comment shortcut
---
--- 	--- More than just text editor
--- 	use{"RaafatTurki/hex.nvim"} -- Hex/Binary Support
--- 	use{"lervag/vimtex"} -- LaTeX Support
--- 	-- (Upcoming) Markdown Support
---
--- 	---Lsp
--- 		use{"neovim/nvim-lspconfig"}
--- 		use{"williamboman/mason.nvim", run=":MasonUpdate"} -- LSP Client Manager
--- 		-- Auto completion
--- 		use{"hrsh7th/nvim-cmp"}
--- 		use{"hrsh7th/cmp-nvim-lsp"}
--- 		use{"hrsh7th/cmp-path"} -- Directory Support
--- end)
-
-
--- Onedark: Colorscheme
 require("onedark").setup({
 	style = "darker",
 
@@ -66,7 +34,7 @@ require("onedark").setup({
 require("onedark").load()
 
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "bash", "c", "nix", "python", "zig" },
+	-- ensure_installed = { "bash", "c", "nix", "python", "zig" },
 	highlight = { enable = true }
 })
 
@@ -99,21 +67,15 @@ let.delimitMate_expand_space = 1
 let.delimitMate_expand_inside_quotes = 1
 
 
--- Vimtex
-let.vimtex_view_method = "zathura"
--- let.vimtex_mappings_prefix = "<Tab>"
-set.conceallevel=1
-let.tex_conceal='abdmg'
-
 -- LSP
 local lsp = require("lspconfig")
 local cmp = require("cmp")
 
-lsp.clangd.setup{}
-lsp.ruff_lsp.setup{
-	filetypes = { "python", "sage" }
-}
-lsp.gopls.setup{}
+lsp.ccls.setup{}
+-- lsp.ruff_lsp.setup{
+-- 	filetypes = { "python", "sage" }
+-- }
+-- lsp.gopls.setup{}
 lsp.zls.setup{}
 
 cmp.setup({

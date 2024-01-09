@@ -6,14 +6,13 @@
   home.homeDirectory = userInfo.homedir;
 
   imports = [
-    # ./pkgs/neovim
+    ./pkgs/programs/neovim
     ./pkgs/programs/git
     ./pkgs/programs/kitty
   ];
 
 
   home.packages = with pkgs; [
-    neovim
     mpv
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

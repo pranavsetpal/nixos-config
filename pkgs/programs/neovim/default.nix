@@ -1,16 +1,11 @@
 { lib, pkgs, ... }: {
   programs.neovim = {
     enable = true;
-    plugins = let
-      nvim-treesitter-with-plugins = pkgs.vimPlugins.nvim-treesitter.withPlugins (treesitter-plugins:
-        with treesitter-plugins; [ bash c nix python zig ]
-      );
-    in
-      with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
         # Visuals
         onedark-nvim # Onedark Colorscheme
         vim-polyglot # Extended syntax highlighting support
-        nvim-treesitter-with-plugins
+        (nvim-treesitter.withPlugins (p: with p; [ bash c lua nix python zig ]))
 
         # Editing
         vim-closetag # Autoclose MTHL tags
@@ -31,4 +26,10 @@
     ];
     extraLuaConfig = lib.fileContents ./init.lua;
   };
+
+  # For Language Servers
+  home.packages = with pkgs; [
+    ccls
+    zls
+  ];
 }
