@@ -8,6 +8,7 @@
   imports = [
     # ./pkgs/neovim
     ./pkgs/git
+    ./pkgs/kitty
   ];
 
 
