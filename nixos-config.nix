@@ -70,11 +70,6 @@
     jack.enable = true;
   };
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "discord"
-    ];
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pranav = {
     isNormalUser = true;
@@ -101,7 +96,6 @@
 
       # Messaging
       signal-desktop
-      discord
       element-desktop
       telegram-desktop
     ];
