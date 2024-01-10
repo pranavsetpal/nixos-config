@@ -2,6 +2,7 @@
   imports = [
     ./core/hardware-config.nix
     ./core/xserver
+    ./core/doas
 
     ./pkgs/services/qtile
     ./pkgs/services/syncthing
@@ -21,16 +22,6 @@
     timeout = 3;
   };
 
-  security.sudo.enable = false;
-  security.doas = {
-    enable = true;
-    extraRules = [{
-      users = [ "pranav" ];
-      persist = true;
-      keepEnv = true;
-    }];
-  };
-  
   networking.hostName = "portable";
   networking.wireless.iwd.enable = true;
 
