@@ -1,6 +1,7 @@
 { config, lib, pkgs, userInfo, ... }: {
   imports = [
-    ./system/hardware-config.nix
+    ./core/hardware-config.nix
+    ./core/xserver
     
     ./pkgs/services/syncthing
   ];
@@ -47,19 +48,19 @@
 
 
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    libinput.enable = true;
-
-    xkb = {
-      layout = "us,us,us";
-      variant = "colemak_dh,colemak,";
-      options = "grp:alt_space_toggle";
-    };
-
-    displayManager.startx.enable = true;
-    windowManager.qtile.enable = true;
-  };
+  # services.xserver = {
+  #   enable = true;
+  #   libinput.enable = true;
+  #
+  #   xkb = {
+  #     layout = "us,us,us";
+  #     variant = "colemak_dh,colemak,";
+  #     options = "grp:alt_space_toggle";
+  #   };
+  #
+  #   displayManager.startx.enable = true;
+  #   windowManager.qtile.enable = true;
+  # };
 
 
   # Enable CUPS to print documents.
@@ -83,7 +84,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."${userInfo.name}" = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    uid = 1000;
+    extraGroups = [ "wheel" ];
     packages = with pkgs; [
       # Window Manager
       kitty
