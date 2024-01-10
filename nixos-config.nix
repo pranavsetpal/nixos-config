@@ -38,6 +38,14 @@
   console.useXkbConfig = true;
 
 
+  # Power Management
+  services.thermald.enable = true;
+  services.tlp = {
+    enable = true;
+    settings.STOP_CHARGE_THRESH_BAT0 = 60;
+  };
+
+
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
