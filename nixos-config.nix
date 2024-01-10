@@ -2,7 +2,8 @@
   imports = [
     ./core/hardware-config.nix
     ./core/xserver
-    
+
+    ./pkgs/services/qtile
     ./pkgs/services/syncthing
   ];
 
