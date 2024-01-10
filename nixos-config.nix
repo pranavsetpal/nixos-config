@@ -21,9 +21,11 @@
     timeout = 3;
   };
 
+  security.sudo.enable = false;
   security.doas = {
     enable = true;
     extraRules = [{
+      users = [ "pranav" ];
       persist = true;
       keepEnv = true;
     }];
