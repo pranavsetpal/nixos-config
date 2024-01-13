@@ -119,7 +119,7 @@
     git
     brightnessctl
     neofetch
-    zig
+    # zig
   ];
 
   fonts.packages = with pkgs; [
@@ -183,9 +183,5 @@
     };
   };
 
-  # nixpkgs.overlays = [ (final: prev: {
-  #   zig = prev.zig.overrideAttrs (old: {
-  #     src = inputs.zig;
-  #   });
-  # }) ];
+  nixpkgs.overlays = [ inputs.zig.overlays.default ];
 }

@@ -9,14 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # zig = {
-    #   url = "github:/ziglang/zig";
-    #   flake = false;
-    # };
+    zig.url = "github:mitchellh/zig-overlay";
   };
 
-  # outputs = { self, nixpkgs, home-manager, zig } @ inputs: 
-  outputs = { self, nixpkgs, home-manager } @ inputs: 
+  outputs = { self, nixpkgs, home-manager, zig } @ inputs: 
     let
       userInfo = rec {
         name = "pranav";
@@ -27,7 +23,7 @@
     in {
       nixosConfigurations.portable = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit userInfo; };
+        specialArgs = { inherit inputs; inherit userInfo; };
         modules = [
           ./nixos-config.nix
 
