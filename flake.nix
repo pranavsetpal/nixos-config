@@ -8,9 +8,15 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # zig = {
+    #   url = "github:/ziglang/zig";
+    #   flake = false;
+    # };
   };
 
-  outputs = { self, nixpkgs, home-manager }: 
+  # outputs = { self, nixpkgs, home-manager, zig } @ inputs: 
+  outputs = { self, nixpkgs, home-manager } @ inputs: 
     let
       userInfo = rec {
         name = "pranav";

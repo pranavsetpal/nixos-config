@@ -1,8 +1,9 @@
-{ config, lib, pkgs, userInfo, ... }: {
+{ config, lib, pkgs, inputs, userInfo, ... }: {
   imports = [
     ./core/hardware-config.nix
-    ./core/xserver
+    ./core/networking
     ./core/doas
+    ./core/xserver
 
     ./pkgs/services/qtile
     ./pkgs/services/syncthing
@@ -22,8 +23,8 @@
     timeout = 3;
   };
 
-  networking.hostName = "portable";
-  networking.wireless.iwd.enable = true;
+  # networking.hostName = "portable";
+  # networking.wireless.iwd.enable = true;
 
   time.timeZone = "Asia/Kolkata";
 
@@ -118,6 +119,7 @@
     git
     brightnessctl
     neofetch
+    zig
   ];
 
   fonts.packages = with pkgs; [
@@ -180,4 +182,10 @@
       options = " --delete-older-than 32d ";
     };
   };
+
+  # nixpkgs.overlays = [ (final: prev: {
+  #   zig = prev.zig.overrideAttrs (old: {
+  #     src = inputs.zig;
+  #   });
+  # }) ];
 }
