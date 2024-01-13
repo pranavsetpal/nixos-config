@@ -44,10 +44,11 @@
     keybindings = {
       "super+shift+enter" = "new_os_window_with_cwd";
 
-      "ctrt+t" = "new_tab";
-      "ctrt+w" = "close_tab";
+      "ctrt+shift+t" = "new_tab";
+      "ctrt+shift+w" = "close_tab";
       "ctrl+tab" = "next_tab";
       "ctrl+shift+tab" = "previous_tab";
     };
   };
 }
+

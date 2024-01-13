@@ -1,5 +1,5 @@
 {
-  description = "basic nixos install flake";
+  description = "nixos setup flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -9,10 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zig.url = "github:mitchellh/zig-overlay";
+    zig-overlay.url = "github:mitchellh/zig-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, zig } @ inputs: 
+  outputs = { self, nixpkgs, home-manager, zig-overlay }:
     let
       userInfo = rec {
         name = "pranav";
@@ -23,18 +23,17 @@
     in {
       nixosConfigurations.portable = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; inherit userInfo; };
+        specialArgs = { inherit userInfo zig-overlay; };
         modules = [
+          ./device/portable.nix
           ./nixos-config.nix
 
-          home-manager.nixosModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit userInfo; };
-              users."${userInfo.name}".imports = [ ./hm-config.nix ];
-            };
-          }
+          home-manager.nixosModules.home-manager { home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = { inherit userInfo; };
+            users.${userInfo.name}.imports = [ ./hm-config.nix ];
+          }; }
         ];
       };
     };

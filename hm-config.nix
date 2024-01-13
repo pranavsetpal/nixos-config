@@ -1,65 +1,53 @@
-{ config, lib, pkgs, userInfo, ... }: {
-  home.stateVersion = "23.11"; # Initial Install Version; Don't change
+{ pkgs, lib, userInfo, ... }: {
+  home.stateVersion = "23.11";
   programs.home-manager.enable = true;
-
-  home.username = userInfo.name;
-  home.homeDirectory = userInfo.homedir;
+  fonts.fontconfig.enable = true;
 
   imports = [
-    ./pkgs/programs/neovim
-    ./pkgs/programs/git
-    ./pkgs/programs/kitty
+    ./pkgs/neovim
+    ./pkgs/kitty.nix
+    ./pkgs/git.nix
   ];
 
+  home = {
+    username = userInfo.name;
+    homeDirectory = userInfo.homedir;
 
-  home.packages = with pkgs; [
-    mpv
-    libreoffice-fresh
+    packages = with pkgs; [
+      librewolf
+      keepassxc
+      neofetch
+      mpv
+      libreoffice-fresh
 
-    zigpkgs.master
+      pavucontrol
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      # Languages
+      ccls
+      python3
+      sage
+      zigpkgs.master zls
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+      # Fonts
+      jetbrains-mono
+      fira-mono
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+      # Messaging
+      signal-desktop
+      element-desktop
+      telegram-desktop
+    ];
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    # To add dotfiles not yet supported by home-manager
+    file = {
+      # "~/.config/appname".source = dotfiles/appname;
+      # "~/.config/appname".source = dotfiles/appname;
+    };
+
+    # Setting session variables
+    sessionVariables = {
+      # env_name = "env_val";
+      # env_name = "env_val";
+    };
   };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. If you don't want to manage your shell through Home
-  # Manager then you have to manually source 'hm-session-vars.sh' located at
-  # either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/pranav/etc/profile.d/hm-session-vars.sh
-  #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
-
 }

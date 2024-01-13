@@ -1,33 +1,8 @@
-import os
-import subprocess
-
-from libqtile import bar, layout, widget, hook, qtile
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
-from libqtile.lazy import lazy
-
-from libqtile.backend.wayland import InputConfig
-
-
-# def window_to_previous_screen(qtile, switch_group=False, switch_screen=False):
-#     i = qtile.screens.index(qtile.current_screen)
-#     if i != 0:
-#         group = qtile.screens[i - 1].group.name
-#         qtile.current_window.togroup(group, switch_group=switch_group)
-#         if switch_screen == True:
-#             qtile.cmd_to_screen(i - 1)
-#
-# def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
-#     i = qtile.screens.index(qtile.current_screen)
-#     if i + 1 != len(qtile.screens):
-#         group = qtile.screens[i + 1].group.name
-#         qtile.current_window.togroup(group, switch_group=switch_group)
-#         if switch_screen == True:
-#             qtile.cmd_to_screen(i + 1)
-
-
-
 mod = "mod4"
 terminal = "kitty"
+
+from libqtile.config import Key
+
 
 keys = [
     # Shortcuts
@@ -70,14 +45,6 @@ keys = [
     Key([mod, "control"], "i", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "d", lazy.layout.normalize(), desc="Reset all window sizes"),
 
-    # Switch between screens
-    # Key([mod], "comma", lazy.prev_screen(), desc="Switch to previous monitor"),
-    # Key([mod], "period", lazy.next_screen(), desc="Switch to next monitor"),
-    # Key([mod, "shift"], "comma", lazy.function(window_to_next_screen, switch_screen=True)),
-    # Key([mod, "shift"], "period", lazy.function(window_to_previous_screen, switch_screen=True)),
-    # Key([mod, "control"], "comma", lazy.function(window_to_next_screen)),
-    # Key([mod, "control"], "period", lazy.function(window_to_previous_screen)),
-
 
     # Volume
     Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), desc="Toggle Speaker Mute"),
@@ -92,33 +59,28 @@ keys = [
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 1%-")),
 
     # Screenshot
-    Key([], "Print",                lazy.spawn("maim -s -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy interactive screenshot to clipboard"),
-    Key(["Shift"], "Print",         lazy.spawn("maim -s -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save interactive screenshot"),
-    Key([mod], "Print",             lazy.spawn("maim -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy monitor screenshot to clipboard"),
-    Key([mod, "Shift"], "Print",    lazy.spawn("maim -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save monitor screenshot"),
+    Key([], "Print", lazy.spawn("maim -s -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy interactive screenshot to clipboard"),
+    Key(["Shift"], "Print", lazy.spawn("maim -s -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save interactive screenshot"),
+    Key([mod], "Print", lazy.spawn("maim -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy monitor screenshot to clipboard"),
+    Key([mod, "Shift"], "Print", lazy.spawn("maim -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save monitor screenshot"),
 ]
 
 
-groups = [Group(i) for i in "123456789"]
+groups = [ Group(i) for i in "123456789" ]
 for group in groups:
     keys.extend([
-        # mod1 + letter of group = switch to group
-        Key( [mod], group.name, lazy.group[group.name].toscreen(),
-            desc="Switch to group {}".format(group.name) ),
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key( [mod, "shift"], group.name, lazy.window.togroup(group.name, switch_group=True),
-            desc="Switch to & move focused window to group {}".format(group.name) ),
-        # # mod1 + shift + letter of group = move focused window to group
-        Key( [mod, "control"], group.name, lazy.window.togroup(group.name),
-            desc="move focused window to group {}".format(group.name) )
+        Key([mod], group.name, lazy.group[group.name].toscreen(), desc=f"Switch to group {group.name}")
+        Key([mod, "shift"], group.name, desczy.window.togroup(group.name, switch_group=True), desc=f"Switch to * move focused window to group {group.name}")
+        Key([mod, "cotnrol"], group.name, desczy.window.togroup(group.name), desc=f"Move focused window to group {group.name}")
     ])
 
 groups.append(ScratchPad("0", [ DropDown(
     "keepass", "keepassxc",
      height=0.75, width=0.75,
      x=0.125, y=0.125, opacity=1,
-)]))
+) ]))
 keys.append(Key([mod], "0", lazy.group["0"].dropdown_toggle("keepass")))
+
 
 layouts = [
     layout.Columns(
@@ -134,14 +96,12 @@ layouts = [
     layout.Max(),
 ]
 
-
 widget_defaults = dict(
     font="FiraMono",
     fontsize=15,
     padding=8
 )
 extension_defaults = widget_defaults.copy()
-
 accent_color = "#61afef"
 
 screens = []
@@ -178,10 +138,10 @@ for j in range(1):
                     update_interval=1
                 ),
                 widget.Sep(foreground="707070", size_percent=50),
-                # widget.PulseVolume(
-                #     fmt=f"<span foreground='{accent_color}'>Spk:</span> {{}}",
-                #     channel="Master"
-                # ),
+                widget.PulseVolume(
+                    fmt=f"<span foreground='{accent_color}'>Spk:</span> {{}}",
+                    channel="Master"
+                ),
                 widget.Sep(foreground="707070", size_percent=50),
                 widget.Battery(
                     fmt=f"<span foreground='{accent_color}'>Bat:</span> {{}}",
