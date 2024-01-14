@@ -1,0 +1,4 @@
+export PS1="\e[0;32m[\u@\H \W]\$\e[m "
+
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
