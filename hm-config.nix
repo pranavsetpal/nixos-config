@@ -1,4 +1,4 @@
-{ pkgs, lib, userInfo, ... }: {
+{ lib, pkgs, userInfo, zig-overlay, ... }: {
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
   fonts.fontconfig.enable = true;
@@ -9,12 +9,16 @@
     ./pkgs/git.nix
   ];
 
+
+  nixpkgs.overlays = [ zig-overlay.overlays.default ];
+
   home = {
     username = userInfo.name;
     homeDirectory = userInfo.homedir;
 
+
     packages = with pkgs; [
-      librewolf
+      librewolf firefox
       keepassxc
       neofetch
       mpv

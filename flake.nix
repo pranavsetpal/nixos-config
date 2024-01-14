@@ -23,15 +23,15 @@
     in {
       nixosConfigurations.portable = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit userInfo zig-overlay; };
+        specialArgs = { inherit userInfo; };
         modules = [
           ./device/portable.nix
           ./nixos-config.nix
 
           home-manager.nixosModules.home-manager { home-manager = {
-            useGlobalPkgs = true;
+            useGlobalPkgs = false;
             useUserPackages = true;
-            extraSpecialArgs = { inherit userInfo; };
+            extraSpecialArgs = { inherit userInfo zig-overlay; };
             users.${userInfo.name}.imports = [ ./hm-config.nix ];
           }; }
         ];

@@ -1,4 +1,4 @@
-{ pkgs, userInfo, zig-overlay, ... }: {
+{ lib, pkgs, userInfo, ... }: {
   system.stateVersion = "23.11";
 
   imports = [
@@ -52,6 +52,7 @@
     gcc
     file
     killall
+    git
   ];
 
   nix = {
@@ -68,8 +69,5 @@
     };
   };
 
-  nixpkgs.overlays = [
-    zig-overlay.overlays.default
-  ];
 }
 
