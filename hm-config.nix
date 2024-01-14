@@ -18,7 +18,7 @@
 
 
     packages = with pkgs; [
-      librewolf firefox
+      librewolf ungoogled-chromium
       keepassxc
       neofetch
       mpv
