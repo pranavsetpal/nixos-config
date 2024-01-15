@@ -9,6 +9,7 @@
     ./core/power.nix
     ./core/graphics.nix
     ./core/sound.nix
+    ./core/bluetooth.nix
 
     # For user
     ./pkgs/qtile
@@ -68,6 +69,5 @@
       options = " --delete-older-than 16d ";
     };
   };
-
 }
 
