@@ -39,7 +39,7 @@
 
       # Messaging
       signal-desktop
-      element-desktop
+      cinny-desktop
       telegram-desktop
     ];
 
