@@ -7,7 +7,7 @@
     ./pkgs/neovim
     ./pkgs/kitty.nix
     ./pkgs/git.nix
-    # ./pkgs/bash
+    ./pkgs/bash
   ];
 
 

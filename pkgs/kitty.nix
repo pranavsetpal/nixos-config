@@ -38,9 +38,9 @@
       color13 = "#be5046"; # magenta-bright
       color14 = "#56b6c2"; # cyan-bright
       color15 = "#abb2bf"; # white-bright
-
     };
-    shellIntegration.enableBashIntegration = true;
+
+    shellIntegration.enableBashIntegration = false;
     keybindings = {
       "super+shift+enter" = "new_os_window_with_cwd";
 
