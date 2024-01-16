@@ -1,7 +1,9 @@
 mod = "mod4"
 terminal = "kitty"
 
-from libqtile.config import Key
+from libqtile import bar, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
+from libqtile.lazy import lazy
 
 
 keys = [
@@ -62,16 +64,16 @@ keys = [
     Key([], "Print", lazy.spawn("maim -s -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy interactive screenshot to clipboard"),
     Key(["Shift"], "Print", lazy.spawn("maim -s -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save interactive screenshot"),
     Key([mod], "Print", lazy.spawn("maim -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy monitor screenshot to clipboard"),
-    Key([mod, "Shift"], "Print", lazy.spawn("maim -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save monitor screenshot"),
+    Key([mod, "Shift"], "Print", lazy.spawn("maim -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save monitor screenshot")
 ]
 
 
 groups = [ Group(i) for i in "123456789" ]
 for group in groups:
     keys.extend([
-        Key([mod], group.name, lazy.group[group.name].toscreen(), desc=f"Switch to group {group.name}")
-        Key([mod, "shift"], group.name, desczy.window.togroup(group.name, switch_group=True), desc=f"Switch to * move focused window to group {group.name}")
-        Key([mod, "cotnrol"], group.name, desczy.window.togroup(group.name), desc=f"Move focused window to group {group.name}")
+        Key([mod], group.name, lazy.group[group.name].toscreen(), desc=f"Switch to group {group.name}"),
+        Key([mod, "shift"], group.name, lazy.window.togroup(group.name, switch_group=True), desc=f"Switch to * move focused window to group {group.name}"),
+        Key([mod, "control"], group.name, lazy.window.togroup(group.name), desc=f"Move focused window to group {group.name}")
     ])
 
 groups.append(ScratchPad("0", [ DropDown(
@@ -107,9 +109,6 @@ accent_color = "#61afef"
 screens = []
 for j in range(1):
     screens.append(Screen(
-        wallpaper="~/.config/qtile/wallpaper.jpg",
-        wallpaper_mode="fill",
-
         top=bar.Bar(
             [
                 widget.Spacer(length=7),

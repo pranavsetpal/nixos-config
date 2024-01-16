@@ -8,6 +8,7 @@
     ./pkgs/kitty.nix
     ./pkgs/git.nix
     ./pkgs/bash
+    ./pkgs/qtile
   ];
 
 
@@ -29,7 +30,7 @@
 
       # Languages
       ccls
-      python3
+      # python3
       sage
       zigpkgs.master zls
 
@@ -51,7 +52,7 @@
 
     # Setting session variables
     sessionVariables = {
-      # env_name = "env_val";
+      EDITOR = "nvim";
       # env_name = "env_val";
     };
   };

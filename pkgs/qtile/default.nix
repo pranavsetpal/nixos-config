@@ -1,24 +1,15 @@
-{ pkgs, userInfo, ... }: {
-  services = {
-    xserver = {
-      displayManager.startx.enable = true;
-      windowManager.qtile = {
-        enable = true;
-        configFile = ./config.py;
-        extraPackages = python3Packages: with pkgs.python3Packages; [
-          dbus-next
-          psutil
-          pulsectl-asyncio
-        ];
-      };
+{ lib, pkgs, ... }: {
+  home = {
+    packages = with pkgs; [
+      qtile
+      bemenu
+      xclip
+      maim
+    ];
+
+    file = {
+      "~/.config/qtile/config.py".source = ./config.py;
+      ".xinitrc".text = "exec qtile start";
     };
-
-    picom.enable = true;
   };
-
-  users.users.${userInfo.name}.packages = with pkgs; [
-    bemenu
-    xclip
-    maim
-  ];
 }

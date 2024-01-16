@@ -10,9 +10,7 @@
     ./core/graphics.nix
     ./core/sound.nix
     ./core/bluetooth.nix
-
-    # For user
-    ./pkgs/qtile
+    ./core/xserver.nix
   ];
 
   time.timeZone = "Asia/Kolkata";
@@ -47,6 +45,7 @@
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" ];
+    packages = with pkgs; [];
   };
 
   environment.systemPackages = with pkgs; [
