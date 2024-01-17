@@ -20,6 +20,7 @@ map('', '<A-e>', '4j'); map('', '<A-i>', '4k')
 map('', "<C-y>", '"+y')
 map('', "<C-p>", '"+p')
 
+
 require("onedark").setup({
 	style = "darker",
 

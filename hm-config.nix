@@ -27,6 +27,7 @@
       libreoffice-fresh
 
       pavucontrol
+      scrcpy
 
       # Languages
       ccls
