@@ -53,6 +53,8 @@
     file
     killall
     git
+
+    v4l-utils
   ];
 
   nix = {
