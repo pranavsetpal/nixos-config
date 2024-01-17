@@ -27,7 +27,7 @@
       libreoffice-fresh
 
       pavucontrol
-      scrcpy
+      android-tools
 
       # Languages
       ccls
