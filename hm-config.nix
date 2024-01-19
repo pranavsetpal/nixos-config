@@ -23,12 +23,14 @@
     packages = with pkgs; [
       librewolf ungoogled-chromium
       keepassxc
-      neofetch
       mpv
       libreoffice-fresh
 
       pavucontrol
       android-tools
+
+      neofetch
+      tree
 
       # Languages
       ccls
