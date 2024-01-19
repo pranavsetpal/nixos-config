@@ -2,18 +2,24 @@
   description = "nixos setup flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixos-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixos-unstable";
     };
 
     zig-overlay.url = "github:mitchellh/zig-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, zig-overlay, ... }:
+  outputs = { self, nixos-stable, nixos-unstable, home-manager, zig-overlay, ... }:
     let
+      system = "x86_64-linux";
+
+      # pkgs = import nixos-unstable { inherit system; };
+      stable = import nixos-stable { inherit system; };
+
       userInfo = rec {
         name = "pranav";
         fullname = "pranavsetpal";
@@ -21,9 +27,9 @@
         homedir = "/home/${name}";
       };
     in {
-      nixosConfigurations.portable = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit userInfo; };
+      nixosConfigurations.portable = nixos-unstable.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit stable userInfo; };
         modules = [
           ./device/portable.nix
           ./nixos-config.nix
@@ -31,8 +37,8 @@
           home-manager.nixosModules.home-manager { home-manager = {
             useGlobalPkgs = false;
             useUserPackages = true;
-            extraSpecialArgs = { inherit userInfo zig-overlay; };
-            users.${userInfo.name}.imports = [ ./hm-config.nix ];
+            extraSpecialArgs = { inherit stable userInfo zig-overlay; };
+            users.${userInfo.name} = import ./hm-config.nix;
           }; }
         ];
       };

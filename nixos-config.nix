@@ -1,4 +1,4 @@
-{ lib, pkgs, userInfo, ... }: {
+{ lib, inputs, pkgs, stable, userInfo, ... }: {
   system.stateVersion = "23.11";
 
   imports = [
@@ -48,6 +48,9 @@
     packages = with pkgs; [];
   };
 
+  nixpkgs.overlays = [
+    (final: prev: { grub2 = stable.grub2; })
+  ];
   environment.systemPackages = with pkgs; [
     gcc
     file
