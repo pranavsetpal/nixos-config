@@ -11,6 +11,9 @@
     ./core/sound.nix
     ./core/bluetooth.nix
     ./core/xserver.nix
+
+    # For User
+    ./pkgs/syncthing.nix
   ];
 
   time.timeZone = "Asia/Kolkata";
