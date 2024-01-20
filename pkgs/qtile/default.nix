@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: {
   home = {
     packages = with pkgs; [
-      qtile
+      python311Packages.qtile
       bemenu
       xclip
       maim

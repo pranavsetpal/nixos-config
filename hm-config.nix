@@ -1,5 +1,4 @@
-# { lib, pkgs, stable, userInfo, zig-overlay, ... }: {
-{ lib, pkgs, userInfo, zig-overlay, ... }: {
+{ lib, pkgs, stable, userInfo, zig-overlay, ... }: {
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
   fonts.fontconfig.enable = true;
@@ -13,7 +12,9 @@
   ];
 
 
-  nixpkgs.overlays = [ zig-overlay.overlays.default ];
+  nixpkgs.overlays = [
+    zig-overlay.overlays.default
+  ];
 
   home = {
     username = userInfo.name;
@@ -34,8 +35,8 @@
 
       # Languages
       ccls
-      # python3
-      # sage
+      python3
+      stable.sage
       zigpkgs.master zls
 
       # Fonts
