@@ -22,31 +22,36 @@
 
 
     packages = with pkgs; [
-      librewolf ungoogled-chromium
-      keepassxc
-      mpv
-      libreoffice-fresh
-
-      pavucontrol
-      android-tools
-
-      neofetch
-      tree
-
       # Languages
       ccls
       python3
       stable.sage
       zigpkgs.master zls
 
-      # Fonts
-      jetbrains-mono
-      fira-mono
+      # Applicaticns
+      librewolf ungoogled-chromium
+      keepassxc
+      mpv
+      libreoffice-fresh
+
+      # Utility
+      pavucontrol
+      android-tools
 
       # Messaging
       signal-desktop
       cinny-desktop
       telegram-desktop
+
+      # CLI Fun
+      neofetch
+      cowsay
+      lolcat
+      tree
+
+      # Fonts
+      jetbrains-mono
+      fira-mono
     ];
 
     # To add dotfiles not yet supported by home-manager
