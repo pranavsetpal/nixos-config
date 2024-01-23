@@ -12,21 +12,20 @@
   ];
 
 
-  nixpkgs.overlays = [
-    zig-overlay.overlays.default
-  ];
+  nixpkgs = {
+    overlays = [
+      zig-overlay.overlays.default
+    ];
+  };
 
   home = {
     username = userInfo.name;
     homeDirectory = userInfo.homedir;
 
-
     packages = with pkgs; [
-      # Languages
-      ccls
-      python3
-      stable.sage
-      zigpkgs.master zls
+      # Utility
+      pavucontrol
+      android-tools
 
       # Applicaticns
       librewolf ungoogled-chromium
@@ -34,9 +33,11 @@
       mpv
       libreoffice-fresh
 
-      # Utility
-      pavucontrol
-      android-tools
+      # Languages
+      ccls
+      python3
+      stable.sage
+      zigpkgs.master zls
 
       # Messaging
       signal-desktop
