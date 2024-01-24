@@ -17,7 +17,7 @@
     let
       system = "x86_64-linux";
 
-      # pkgs = import nixos-unstable { inherit system; };
+      pkgs = import nixos-unstable { inherit system; };
       stable = import nixos-stable { inherit system; };
 
       userInfo = rec {
@@ -29,18 +29,14 @@
     in {
       nixosConfigurations.portable = nixos-unstable.lib.nixosSystem {
         system = system;
-        specialArgs = { inherit stable userInfo; };
-        modules = [
-          ./device/portable.nix
-          ./nixos-config.nix
+        specialArgs = { inherit pkgs stable userInfo; };
+        modules = [ ./device/portable.nix ./nixos-config.nix ];
+      };
 
-          home-manager.nixosModules.home-manager { home-manager = {
-            useGlobalPkgs = false;
-            useUserPackages = true;
-            extraSpecialArgs = { inherit stable userInfo zig-overlay; };
-            users.${userInfo.name} = import ./hm-config.nix;
-          }; }
-        ];
+      homeConfigurations.${userInfo.name} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit stable userInfo zig-overlay; };
+        modules = [ ./hm-config.nix ];
       };
     };
 }

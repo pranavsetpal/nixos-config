@@ -48,7 +48,7 @@
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ home-manager ];
   };
 
   nixpkgs.overlays = [
