@@ -1,10 +1,10 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, stable, ... }: {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
       onedark-nvim # Onedark Colorscheme
       vim-polyglot # Extended syntax highlighting support
-      (nvim-treesitter.withPlugins (p: with p; [ bash c lua nix python zig ]))
+      (stable.vimPlugins.nvim-treesitter.withPlugins (p: with p; [ bash c lua nix python zig ]))
 
       # Editing
       vim-closetag # Autoclose tags
