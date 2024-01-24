@@ -11,7 +11,6 @@
     ./pkgs/qtile
   ];
 
-
   nixpkgs = {
     overlays = [
       zig-overlay.overlays.default
@@ -67,4 +66,5 @@
       # env_name = "env_val";
     };
   };
+  news.display = "silent";
 }
