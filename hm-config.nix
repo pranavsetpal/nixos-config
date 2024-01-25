@@ -1,4 +1,4 @@
-{ lib, pkgs, stable, userInfo, zig-overlay, ... }: {
+{ lib, pkgs, stable, leading, userInfo, zig-overlay, ... }: {
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
   fonts.fontconfig.enable = true;
@@ -35,7 +35,8 @@
       # Languages
       ccls
       python3
-      stable.sage
+      # stable.sage
+      leading.sage
       zigpkgs.master zls
 
       # Messaging

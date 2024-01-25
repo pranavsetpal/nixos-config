@@ -52,6 +52,22 @@
         "type": "github"
       }
     },
+    "nixos-leading": {
+      "locked": {
+        "lastModified": 1706117207,
+        "narHash": "sha256-wwbyNIjhqR220GbQrKVpzF+eb8Rd+k7mxn6BQ7REfzQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "435535d968d324f01dbc7af428a716060a951088",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "435535d968d324f01dbc7af428a716060a951088",
+        "type": "github"
+      }
+    },
     "nixos-stable": {
       "locked": {
         "lastModified": 1705916986,
@@ -103,6 +119,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nixos-leading": "nixos-leading",
         "nixos-stable": "nixos-stable",
         "nixos-unstable": "nixos-unstable",
         "zig-overlay": "zig-overlay"
