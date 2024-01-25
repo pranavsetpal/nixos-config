@@ -58,6 +58,7 @@
     gcc
     file
     killall
+    unzip
     git
 
     v4l-utils
