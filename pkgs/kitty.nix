@@ -8,6 +8,8 @@
     settings = {
       confirm_os_window_close = 0; # 
 
+      disable_ligatures = "always";
+
       # Cursor
       cursor_shape = "underline";
       cursor_beam_thickness = "1.5";
