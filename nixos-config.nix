@@ -2,8 +2,6 @@
   system.stateVersion = "23.11";
 
   imports = [
-    ./device/portable.nix
-
     ./core/bootloader.nix
     ./core/networking.nix
     ./core/power.nix
