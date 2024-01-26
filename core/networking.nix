@@ -1,7 +1,14 @@
 { ... }: {
   networking = {
     hostName = "portable";
-    wireless.iwd.enable = true;
+    wireless.iwd = {
+      enable = true;
+      settings = {
+        General = {
+          EnableNetworkConfiguration = true;
+        };
+      };
+    };
   };
 
   services.unbound = {
