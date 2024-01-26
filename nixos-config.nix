@@ -62,6 +62,8 @@
     v4l-utils
   ];
 
+  boot.tmp.cleanOnBoot = true;
+
   nix = {
     package = pkgs.nixFlakes;
     settings = {
