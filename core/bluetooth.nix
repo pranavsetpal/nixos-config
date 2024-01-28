@@ -3,3 +3,4 @@
   # hardware.bluetooth.powerOnBoot = true;
   # environment.systemPackages ++= with pkgs; [ bluez ];
 }
+
