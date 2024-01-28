@@ -19,7 +19,7 @@
         do-ip6 = "yes";
         prefer-ip6 = "yes";
 
-        # harden-glue = "no"; # Send additional data, like ns1.example.com to .com servers
+        harden-glue = "no"; # Send additional data, like ns1.example.com to .com servers
         harden-dnssec-stripped = "yes";
         use-caps-for-id = "no"; # DNSSEC breaks if not set
 
