@@ -5,6 +5,7 @@
       bemenu
       xclip
       maim
+      brightnessctl
     ];
 
     file = {
