@@ -30,6 +30,7 @@
       librewolf ungoogled-chromium
       keepassxc
       mpv
+      obs-studio
       libreoffice-fresh
 
       # Languages
