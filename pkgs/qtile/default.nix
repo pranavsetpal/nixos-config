@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, userInfo, ... }: {
   home = {
     packages = with pkgs; [
       python311Packages.qtile
@@ -9,8 +9,8 @@
     ];
 
     file = {
-      "~/.config/qtile/config.py".source = ./config.py;
-      ".xinitrc".text = "exec qtile start";
+      ".config/qtile/config.py".source = ./config.py;
+      ".xinitrc".text = "exec qtile start\n";
     };
   };
 }
