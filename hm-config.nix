@@ -5,10 +5,11 @@
 
   imports = [
     ./pkgs/neovim
-    ./pkgs/kitty.nix
-    ./pkgs/git.nix
     ./pkgs/bash.nix
+    ./pkgs/git.nix
+    ./pkgs/xorg.nix
     ./pkgs/qtile
+    ./pkgs/kitty.nix
   ];
 
   nixpkgs = {

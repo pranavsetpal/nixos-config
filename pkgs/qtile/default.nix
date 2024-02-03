@@ -10,7 +10,7 @@
 
     file = {
       ".config/qtile/config.py".source = ./config.py;
-      ".xinitrc".text = "exec qtile start\n";
+      ".xinitrc".text = /* bash */ "exec qtile start \n";
     };
   };
 }
