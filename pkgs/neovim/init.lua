@@ -17,8 +17,8 @@ map('', 'o', 'l'); map('', 'O', 'L')
 map('', '<A-e>', '4j'); map('', '<A-i>', '4k')
 
 -- Enable system clipboard with Ctrl+p/y
-map('', "<C-y>", '"+y')
-map('', "<C-p>", '"+p')
+map('', "<A-y>", '"+y')
+map('', "<A-p>", '"+p')
 
 
 require("onedark").setup({
