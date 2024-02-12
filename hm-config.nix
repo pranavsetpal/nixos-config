@@ -12,7 +12,15 @@
     ./pkgs/kitty.nix
   ];
 
+
   nixpkgs = {
+    config.allowUnfreePredicate = pkg: builtins.elem(lib.getName pkg) [
+      "obsidian"
+    ];
+    config.permittedInsecurePackages = [
+      "electron-25.9.0"
+    ];
+
     overlays = [
       zig-overlay.overlays.default
     ];
@@ -26,6 +34,7 @@
       # Utility
       pavucontrol
       android-tools
+      ffmpeg
 
       # Applicaticns
       librewolf ungoogled-chromium
@@ -33,6 +42,7 @@
       mpv
       obs-studio
       libreoffice-fresh
+      obsidian
 
       # Languages
       ccls
@@ -50,6 +60,7 @@
       cowsay
       lolcat
       tree
+      htop
 
       # Fonts
       jetbrains-mono
@@ -58,8 +69,8 @@
 
     # To add dotfiles not yet supported by home-manager
     file = {
-      # "~/.config/appname".source = dotfiles/appname;
-      # "~/.config/appname".source = dotfiles/appname;
+      # ".config/appname".source = dotfiles/appname;
+      # ".config/appname".source = dotfiles/appname;
     };
 
     # Setting session variables
