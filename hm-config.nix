@@ -10,6 +10,7 @@
     ./pkgs/xorg.nix
     ./pkgs/qtile
     ./pkgs/kitty.nix
+    ./pkgs/pipewire.nix
   ];
 
 
@@ -41,8 +42,8 @@
       keepassxc
       mpv
       obs-studio
-      libreoffice-fresh
       obsidian
+      libreoffice-fresh
 
       # Languages
       ccls
