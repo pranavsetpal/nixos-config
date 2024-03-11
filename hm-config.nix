@@ -5,7 +5,7 @@
 
   imports = [
     ./pkgs/neovim
-    ./pkgs/bash.nix
+    ./pkgs/bash
     ./pkgs/git.nix
     ./pkgs/xorg.nix
     ./pkgs/qtile
