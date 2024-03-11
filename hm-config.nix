@@ -16,10 +16,7 @@
 
   nixpkgs = {
     config.allowUnfreePredicate = pkg: builtins.elem(lib.getName pkg) [
-      "obsidian"
-    ];
-    config.permittedInsecurePackages = [
-      "electron-25.9.0"
+      "multiviewer-for-f1"
     ];
 
     overlays = [
@@ -32,36 +29,35 @@
     homeDirectory = userInfo.homedir;
 
     packages = with pkgs; [
-      # Utility
+      # CLI & Maintainence
       pavucontrol
       android-tools
+      qpdf
       ffmpeg
+      feh mpv
 
-      # Applicaticns
+      # Applications
       librewolf ungoogled-chromium
       keepassxc
-      mpv
+      multiviewer-for-f1
+      gimp
       obs-studio
-      obsidian
-      libreoffice-fresh
 
-      # Languages
-      ccls
-      python3
-      sage
-      zigpkgs.master zls
-
-      # Messaging
       signal-desktop
       cinny-desktop
-      telegram-desktop
 
       # CLI Fun
-      neofetch
-      cowsay
-      lolcat
       tree
       htop
+      cowsay
+      lolcat
+      neofetch
+
+      # Languages + LSP
+      ccls
+      python3 ruff-lsp
+      sage
+      zigpkgs.master zls
 
       # Fonts
       jetbrains-mono
