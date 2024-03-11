@@ -12,10 +12,11 @@
       nvim-surround # Quick change brackets, quotes, tags
       tcomment_vim # Comment shortcut
 
-      # > Text Editor
+      # More than just a Text Editor
       hex-nvim # Hex/Binary support
       # vimtex # LaTeX support
       # (to-come) # Markdown support
+      firenvim # Vim Support for Browser Input
 
       # Lsp
       nvim-lspconfig

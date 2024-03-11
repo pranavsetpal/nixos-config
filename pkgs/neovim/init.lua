@@ -73,10 +73,9 @@ local lsp = require("lspconfig")
 local cmp = require("cmp")
 
 lsp.ccls.setup{}
--- lsp.ruff_lsp.setup{
--- 	filetypes = { "python", "sage" }
--- }
--- lsp.gopls.setup{}
+lsp.ruff_lsp.setup{
+	filetypes = { "python", "sage" }
+}
 lsp.zls.setup{}
 
 cmp.setup({
