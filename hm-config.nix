@@ -32,16 +32,17 @@
       # CLI & Maintainence
       pavucontrol
       android-tools
-      qpdf
-      ffmpeg
-      feh mpv
+      pandoc
+      qpdf zathura
+      ffmpeg feh mpv
 
       # Applications
       librewolf ungoogled-chromium
       keepassxc
       multiviewer-for-f1
-      gimp
+      texliveMinimal
       obs-studio
+      gimp
 
       signal-desktop
       cinny-desktop

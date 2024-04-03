@@ -6,7 +6,7 @@
     ./core/networking.nix
     ./core/power.nix
     ./core/graphics.nix
-    ./core/sound.nix
+    ./core/audio.nix
     ./core/bluetooth.nix
     ./core/xserver.nix
 
@@ -49,9 +49,9 @@
     packages = with pkgs; [ home-manager ];
   };
 
-  nixpkgs.overlays = [
-    (final: prev: { grub2 = stable.grub2; })
-  ];
+  # nixpkgs.overlays = [
+  #   (final: prev: { grub2 = stable.grub2; })
+  # ];
   environment.systemPackages = with pkgs; [
     gcc
     file
@@ -60,6 +60,8 @@
     git
 
     v4l-utils
+
+    stable.xz # Version 5.4.4 due to CVE-2024-3094 10/10
   ];
 
   boot.tmp.cleanOnBoot = true;
