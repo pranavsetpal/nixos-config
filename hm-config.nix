@@ -17,6 +17,7 @@
   nixpkgs = {
     config.allowUnfreePredicate = pkg: builtins.elem(lib.getName pkg) [
       "multiviewer-for-f1"
+      "obsidian"
     ];
 
     overlays = [
@@ -41,6 +42,7 @@
       keepassxc
       multiviewer-for-f1
       texliveMinimal
+      obsidian
       obs-studio
       gimp
 
