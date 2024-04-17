@@ -3,20 +3,28 @@
     hostName = "portable";
     wireless.iwd = {
       enable = true;
-      settings.General.EnableNetworkConfiguration = true;
+      settings = {
+        General.EnableNetworkConfiguration = true;
+        Network.NameResolvingService= "resolvconf";
+      };
+    };
+    resolvconf = {
+      enable = true;
+      useLocalResolver = true;
     };
   };
 
   services.unbound = {
     enable = true;
     settings = {
+      remote-control.control-enable = true;
       server = {
         interface = "127.0.0.1";
         port = 53;
-        do-udp = "yes";
         do-tcp = "yes";
-        do-ip4 = "yes";
+        do-udp = "yes";
         do-ip6 = "yes";
+        do-ip4 = "yes";
         prefer-ip6 = "yes";
 
         harden-glue = "no"; # Send additional data, like ns1.example.com to .com servers
