@@ -5,7 +5,7 @@
 
   imports = [
     ./pkgs/neovim
-    ./pkgs/bash
+    ./pkgs/shell
     ./pkgs/git.nix
     ./pkgs/xorg.nix
     ./pkgs/qtile
@@ -79,4 +79,3 @@
   };
   news.display = "silent";
 }
-

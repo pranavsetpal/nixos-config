@@ -186,4 +186,3 @@ reconfigure_screens = True
 auto_minimize = True
 
 wmname = "L3GD"
-

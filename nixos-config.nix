@@ -49,9 +49,6 @@
     packages = with pkgs; [ home-manager ];
   };
 
-  # nixpkgs.overlays = [
-  #   (final: prev: { grub2 = stable.grub2; })
-  # ];
   environment.systemPackages = with pkgs; [
     gcc
     file
@@ -80,4 +77,3 @@
     };
   };
 }
-
