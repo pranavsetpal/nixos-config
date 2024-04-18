@@ -1,4 +1,4 @@
-{ lib, pkgs, stable, userInfo, zig-overlay, ... }: {
+{ lib, pkgs, userInfo, zig-overlay, ... }: {
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
   fonts.fontconfig.enable = true;

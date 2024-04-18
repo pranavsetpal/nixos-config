@@ -1,4 +1,4 @@
-{ lib, inputs, pkgs, stable, userInfo, ... }: {
+{ lib, inputs, pkgs, userInfo, ... }: {
   system.stateVersion = "23.11";
 
   imports = [
@@ -57,8 +57,6 @@
     git
 
     v4l-utils
-
-    stable.xz # Version 5.4.4 due to CVE-2024-3094 10/10
   ];
 
   boot.tmp.cleanOnBoot = true;
