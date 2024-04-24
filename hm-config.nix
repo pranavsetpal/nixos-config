@@ -59,7 +59,7 @@
       # Languages + LSP
       ccls
       python3 ruff-lsp
-      sage
+      (sage.override { requireSageTests = false; })
       zigpkgs.master zls
 
       # Fonts
