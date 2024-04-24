@@ -27,5 +27,9 @@
 
     extraLuaConfig = lib.fileContents ./init.lua;
   };
-}
 
+  home.file.".config/nvim/ftdetect/" = {
+    source = ./ftdetect;
+    recursive = true;
+  };
+}
