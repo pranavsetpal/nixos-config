@@ -1,4 +1,3 @@
 { ... }: {
   hardware.opengl.enable = true;
 }
-

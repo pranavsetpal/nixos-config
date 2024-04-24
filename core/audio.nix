@@ -11,4 +11,3 @@
     wireplumber.enable = true;
   };
 }
-

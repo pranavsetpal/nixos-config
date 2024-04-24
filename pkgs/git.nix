@@ -5,4 +5,3 @@
     userEmail = userInfo.email;
   };
 }
-

@@ -28,4 +28,3 @@
 
   home.packages = with pkgs; [ nvd ];
 }
-

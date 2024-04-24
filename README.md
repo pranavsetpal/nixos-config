@@ -12,4 +12,3 @@ or the alias
 ```shell
 nixos-update (sources/os/home/all) # Leaving blank updates everything
 ```
-
