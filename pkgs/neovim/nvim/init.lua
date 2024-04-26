@@ -16,7 +16,7 @@ map('', 'o', 'l'); map('', 'O', 'L')
 
 map('', '<A-e>', '4j'); map('', '<A-i>', '4k')
 
-
+-- Install lazy.nvim if not installed
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -32,11 +32,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
-
+-- Set tab length
 set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
 set.noexpandtab = true
 set.breakindent = true
 
+-- Use terminal cursor
 set.guicursor = false
+
+-- Show line numbers
+set.number = true
+set.relativenumber = true

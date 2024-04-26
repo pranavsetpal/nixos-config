@@ -3,7 +3,7 @@
 	home = {
 		packages = with pkgs; [
 			ccls
-			ruff-lsp
+			ruff
 			zls
 		];
 
