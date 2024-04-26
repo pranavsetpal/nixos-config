@@ -40,9 +40,10 @@
       # Applications
       librewolf ungoogled-chromium
       keepassxc
-      multiviewer-for-f1
       texliveMinimal
+      multiviewer-for-f1
       obsidian
+      vesktop
       obs-studio
       gimp
 
@@ -56,11 +57,10 @@
       lolcat
       neofetch
 
-      # Languages + LSP
-      ccls
-      python3 ruff-lsp
+      # Languages
+      python3
       (sage.override { requireSageTests = false; })
-      zigpkgs.master zls
+      zigpkgs.master
 
       # Fonts
       jetbrains-mono
