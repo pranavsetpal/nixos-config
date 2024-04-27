@@ -32,6 +32,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+-- Set colorscheme
+set.termguicolors = true
+vim.cmd.colorscheme "catppuccin"
+
 -- Set tab length
 set.tabstop = 4
 set.softtabstop = 4
