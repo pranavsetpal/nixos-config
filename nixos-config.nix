@@ -2,6 +2,7 @@
   system.stateVersion = "23.11";
 
   imports = [
+    # Core services
     ./core/bootloader.nix
     ./core/networking.nix
     ./core/power.nix
@@ -10,8 +11,10 @@
     ./core/bluetooth.nix
     ./core/xserver.nix
 
-    # For User
-    ./pkgs/syncthing.nix
+    # Selfhosted servers
+    ./servers/unbound.nix
+    ./servers/searx.nix
+    ./servers/syncthing.nix
   ];
 
   time.timeZone = "Asia/Kolkata";
