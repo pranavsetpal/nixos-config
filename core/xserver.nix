@@ -1,3 +1,3 @@
 { ... }: {
-  services.xserver.displayManager.startx.enable = true;
+	services.xserver.displayManager.startx.enable = true;
 }

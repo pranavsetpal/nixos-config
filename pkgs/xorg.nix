@@ -1,3 +1,3 @@
 { ... }: {
-  home.file.".xinitrc".text = /* bash */ "xserverauth=$XAUTHORITY \n";
+	home.file.".xinitrc".text = /* bash */ "xserverauth=$XAUTHORITY \n";
 }
