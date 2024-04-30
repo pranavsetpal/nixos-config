@@ -6,7 +6,6 @@
 		./core/bootloader.nix
 		./core/networking.nix
 		./core/power.nix
-		./core/graphics.nix
 		./core/audio.nix
 		./core/bluetooth.nix
 		./core/xserver.nix
