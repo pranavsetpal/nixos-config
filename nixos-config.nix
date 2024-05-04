@@ -62,6 +62,12 @@
 
 		v4l-utils
 	];
+	programs.nix-ld = {
+		enable = true;
+		libraries = with pkgs; [
+			stdenv.cc
+		];
+	};
 
 	boot.tmp.cleanOnBoot = true;
 
