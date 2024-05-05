@@ -11,7 +11,6 @@ return {
 		require("nvim-treesitter.configs").setup({
 			ensure_installed = { "asm", "c", "lua", "nix", "python", "zig" },
 			highlight = { enable = true },
-			incremental_selection = { enable = true }
 		})
 	end,
 }
