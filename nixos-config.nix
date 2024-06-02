@@ -8,7 +8,7 @@
 		./core/power.nix
 		./core/audio.nix
 		./core/bluetooth.nix
-		./core/xserver.nix
+		./core/wayland.nix
 
 		# Selfhosted servers
 		./servers/unbound.nix
@@ -22,17 +22,10 @@
 	# i18n.defaultLocale = "en_IN";
 	# i18n.defaultCharacterSet = "UTF-8";
 
-	services = {
-		xserver = {
-			enable = true;
-			xkb = {
-				layout = "us,us,us";
-				variant = "colemak_dh,colemak,";
-				options = "grp:alt_space_toggle";
-			};
-		};
-		# libinput.enable = true;
-
+	# Custom keyboard layout for console
+	services.xserver.xkb = {
+		layout = "us";
+		variant = "colemak_dh";
 	};
 	console.useXkbConfig = true;
 

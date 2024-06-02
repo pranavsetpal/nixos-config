@@ -15,7 +15,6 @@
 	outputs = { self, nixos-unstable, home-manager, zig-overlay, ... }:
 		let
 			system = "x86_64-linux";
-
 			pkgs = import nixos-unstable { inherit system; };
 
 			userInfo = rec {

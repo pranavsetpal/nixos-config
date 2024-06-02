@@ -3,14 +3,14 @@
 		packages = with pkgs; [
 			python311Packages.qtile
 			bemenu
-			xclip
-			maim
+			wl-clipboard
+			grim slurp
 			brightnessctl
 		];
 
-		file = {
-			".config/qtile/config.py".source = ./config.py;
-			".xinitrc".text = /* bash */ "exec qtile start \n";
+		file.".config/qtile" = {
+			source = ./qtile;
+			recursive = true;
 		};
 	};
 }

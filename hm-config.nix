@@ -7,7 +7,6 @@
 		./pkgs/neovim
 		./pkgs/shell
 		./pkgs/git.nix
-		./pkgs/xorg.nix
 		./pkgs/qtile
 		./pkgs/kitty.nix
 		./pkgs/pipewire.nix

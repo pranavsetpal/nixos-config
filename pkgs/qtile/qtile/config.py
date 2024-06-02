@@ -4,7 +4,23 @@ terminal = "kitty"
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
+from libqtile.backend.wayland import InputConfig
 
+import os
+import subprocess
+from libqtile import hook
+
+@hook.subscribe.startup_once
+def autostart():
+    subprocess.Popen([os.path.expanduser("~/.config/qtile/autostart.sh")])
+
+wl_input_rules = {
+    "type:keyboard": InputConfig(
+        kb_layout="us,us,us",
+        kb_variant="colemak_dh,colemak,",
+        kb_options="grp:alt_space_toggle"
+    )
+};
 
 keys = [
 	# Shortcuts
@@ -61,10 +77,10 @@ keys = [
 	Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 1%-")),
 
 	# Screenshot
-	Key([], "Print", lazy.spawn("maim -s -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy interactive screenshot to clipboard"),
-	Key(["Shift"], "Print", lazy.spawn("maim -s -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save interactive screenshot"),
-	Key([mod], "Print", lazy.spawn("maim -u | xclip -selection clipboard -t image/png", shell=True), desc="Copy monitor screenshot to clipboard"),
-	Key([mod, "Shift"], "Print", lazy.spawn("maim -u $HOME/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save monitor screenshot")
+	Key([], "Print", lazy.spawn("slurp | grim -g - - | wl-copy", shell=True), desc="Copy interactive screenshot to clipboard"),
+	Key(["Shift"], "Print", lazy.spawn("slurp | grim -g - ~/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save interactive screenshot"),
+	Key([mod], "Print", lazy.spawn("grim - | wl-copy", shell=True), desc="Copy monitor screenshot to clipboard"),
+    Key([mod, "Shift"], "Print", lazy.spawn("grim ~/media/screenshots/$(date +%Y-%m-%d_%a_%H:%M:%S).png", shell=True), desc="Save monitor screenshot")
 ]
 
 
@@ -180,7 +196,7 @@ floating_layout = layout.Floating(
 		Match(title="pinentry"),	    # GPG key password entry
 	]
 )
-auto_fullscreen = False
+auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
