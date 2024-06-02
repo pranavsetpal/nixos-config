@@ -45,3 +45,7 @@ set.guicursor = ""
 -- Show line numbers
 set.number = true
 set.relativenumber = true
+
+-- Allow to use system clipboard
+map('', "<A-y>", '"+y')
+map('', "<A-p>", '"+p')
