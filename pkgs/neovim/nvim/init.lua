@@ -32,19 +32,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
--- Set colorscheme
-set.termguicolors = true
-vim.cmd.colorscheme "catppuccin"
-
 -- Set tab length
 set.tabstop = 4
 set.softtabstop = 4
 set.shiftwidth = 4
-set.noexpandtab = true
+-- set.noexpandtab = true
 set.breakindent = true
 
 -- Use terminal cursor
-set.guicursor = false
+set.guicursor = ""
 
 -- Show line numbers
 set.number = true
