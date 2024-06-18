@@ -15,7 +15,12 @@
 	outputs = { self, nixos-unstable, home-manager, zig-overlay, ... }:
 		let
 			system = "x86_64-linux";
-			pkgs = import nixos-unstable { inherit system; };
+			pkgs = import nixos-unstable {
+				inherit system;
+				config.allowUnfreePredicate = pkg: builtins.elem(nixos-unstable.lib.getName pkg) [
+					"epson-201401w"
+				];
+			};
 
 			userInfo = rec {
 				name = "pranav";
