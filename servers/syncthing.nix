@@ -8,14 +8,18 @@
 		overrideFolders = true;
 		settings = {
 			devices = {
-				mobile.id = "TVDG3ZB-PJAC6NR-RIY3FND-VAFMUWO-2ZIYHIL-JH4UR5S-EKY4OP6-6RFQYAU";
+				mobile.id = "Y5X6XKG-INSDGSF-GHMDC2W-L7PP5QA-YJ56ZLB-RERBLFG-V25ZTEV-XRIGYQ7";
 			};
 			folders = {
 				keepass = {
 					path = "${userInfo.homedir}/.keepassxc";
 					devices = [ "mobile" ];
 				};
-				misc = {
+				obsidian = {
+					path = "${userInfo.homedir}/.obsidian";
+					devices = [ "mobile" ];
+				};
+				share = {
 					path = "${userInfo.homedir}/share/mobile";
 					devices = [ "mobile" ];
 				};
