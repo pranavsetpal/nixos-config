@@ -9,6 +9,7 @@
 		./core/audio.nix
 		./core/bluetooth.nix
 		./core/wayland.nix
+		./core/android.nix
 
 		# Selfhosted servers
 		./servers/unbound.nix
@@ -42,7 +43,7 @@
 	users.users.${userInfo.name} = {
 		isNormalUser = true;
 		uid = 1000;
-		extraGroups = [ "wheel" ];
+		extraGroups = [ "wheel" "kvm" "adbusers" ];
 		packages = with pkgs; [ home-manager ];
 	};
 

@@ -31,7 +31,6 @@
 		packages = with pkgs; [
 			# CLI & Maintainence
 			pavucontrol
-			android-tools
 			pandoc
 			qpdf zathura
 			ffmpeg feh mpv
