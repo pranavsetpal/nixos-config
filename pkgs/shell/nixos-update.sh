@@ -1,5 +1,5 @@
 if [[ $1 = "sources" ]]; then
-		doas nix flake update
+		nix flake update
 
 elif [[ $1 = "os" ]]; then
 		nixos-rebuild build --flake .#portable
