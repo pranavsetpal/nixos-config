@@ -32,13 +32,13 @@
 			nixosConfigurations.portable = nixos-unstable.lib.nixosSystem {
 				system = system;
 				specialArgs = { inherit pkgs userInfo; };
-				modules = [ ./device/portable.nix ./nixos-config.nix ];
+				modules = [ ./hardware-configuration/portable.nix ./configuration.nix ];
 			};
 
 			homeConfigurations.${userInfo.name} = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;
 				extraSpecialArgs = { inherit userInfo zig-overlay; };
-				modules = [ ./hm-config.nix ];
+				modules = [ ./home.nix ];
 			};
 		};
 }
