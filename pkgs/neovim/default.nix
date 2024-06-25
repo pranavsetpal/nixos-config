@@ -5,6 +5,8 @@
 			ccls
 			ruff
 			zls
+
+			unixtools.xxd # for hex.nvim
 		];
 
 		file.".config/nvim" = {
