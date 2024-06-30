@@ -8,6 +8,7 @@
 		./pkgs/shell
 		./pkgs/git.nix
 		./pkgs/qtile
+		./pkgs/xkb
 		./pkgs/kitty.nix
 		./pkgs/pipewire.nix
 	];

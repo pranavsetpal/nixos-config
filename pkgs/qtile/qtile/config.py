@@ -16,8 +16,8 @@ def autostart():
 
 wl_input_rules = {
     "type:keyboard": InputConfig(
-        kb_layout="us,us,us",
-        kb_variant="colemak_dh,colemak,",
+        kb_layout="custom,us,us",
+        kb_variant="homerow_semicolon__rctl_left,colemak,",
         kb_options="grp:alt_space_toggle"
     )
 };
