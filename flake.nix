@@ -10,9 +10,13 @@
 		};
 
 		zig-overlay.url = "github:mitchellh/zig-overlay";
+		qtile = {
+			url = "github:qtile/qtile";
+			flake = false;
+		};
 	};
 
-	outputs = { self, nixos-unstable, home-manager, zig-overlay, ... }:
+	outputs = { self, nixos-unstable, home-manager, zig-overlay, qtile, ... }:
 		let
 			system = "x86_64-linux";
 			pkgs = import nixos-unstable {
@@ -37,7 +41,7 @@
 
 			homeConfigurations.${userInfo.name} = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;
-				extraSpecialArgs = { inherit userInfo zig-overlay; };
+				extraSpecialArgs = { inherit userInfo zig-overlay qtile; };
 				modules = [ ./home.nix ];
 			};
 		};
