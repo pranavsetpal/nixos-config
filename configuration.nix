@@ -8,7 +8,6 @@
 		./core/power.nix
 		./core/audio.nix
 		./core/bluetooth.nix
-		./core/wayland.nix
 		./core/printing.nix
 		./core/android.nix
 

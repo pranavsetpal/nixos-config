@@ -5,8 +5,9 @@
 
 	imports = [
 		./pkgs/neovim
-		./pkgs/shell
 		./pkgs/git.nix
+		./pkgs/shell
+		./pkgs/xdg.nix
 		./pkgs/qtile
 		./pkgs/xkb
 		./pkgs/kitty.nix
