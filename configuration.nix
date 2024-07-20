@@ -55,6 +55,8 @@
 		git
 
 		v4l-utils
+
+		man-pages man-pages-posix
 	];
 	programs.nix-ld = {
 		enable = true;
@@ -62,6 +64,7 @@
 			stdenv.cc
 		];
 	};
+	documentation.dev.enable = true;
 
 	boot.tmp.cleanOnBoot = true;
 
