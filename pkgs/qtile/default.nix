@@ -1,7 +1,7 @@
 { lib, pkgs, userInfo, qtile, ... }: {
 	home = {
 		packages = with pkgs; [
-			(python311Packages.qtile.overrideAttrs { src = qtile.outPath; version = "0.26.0+" + qtile.shortRev; })
+			(python312Packages.qtile.overrideAttrs { src = qtile.outPath; version = "0.27.0+" + qtile.shortRev; })
 			bemenu
 			wl-clipboard
 			grim slurp
