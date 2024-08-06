@@ -12,23 +12,3 @@ xkb_symbols "homerow_semicolon" {
 	key <AD10>               {	[      apostrophe,        quotedbl ] };
 	key <AC11>               {	[       semicolon,           colon ] };
 };
-
-partial alphanumeric_keys
-xkb_symbols "rctl_left" {
-    name[Group1] = "Colemak_DH (RCTL used as Left Key)";
-    include "custom(basic)"
-
-	key <RCTL>               {	[            Left ] };
-	modifier_map Control { <LCTL> };
-};
-
-partial alphanumeric_keys
-xkb_symbols "homerow_semicolon__rctl_left" {
-    name[Group1] = "Colemak_DH (Colon and Quote Keys switched + RCTL used as Left Key)";
-    include "custom(basic)"
-
-	key <AD10>               {	[      apostrophe,        quotedbl ] };
-	key <AC11>               {	[       semicolon,           colon ] };
-	key <RCTL>               {	[            Left ] };
-	modifier_map Control { <LCTL> };
-};
