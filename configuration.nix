@@ -14,7 +14,7 @@
 		# Selfhosted servers
 		./servers/unbound.nix
 		./servers/searx.nix
-		./servers/syncthing.nix
+		./servers/syncthing.nix # Requires SYNCTHING_MOBILE_ID set
 	];
 
 	time.timeZone = "Asia/Kolkata";

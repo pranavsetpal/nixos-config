@@ -8,7 +8,7 @@
 		overrideFolders = true;
 		settings = {
 			devices = {
-				mobile.id = "Y5X6XKG-INSDGSF-GHMDC2W-L7PP5QA-YJ56ZLB-RERBLFG-V25ZTEV-XRIGYQ7";
+				mobile.id = builtins.getEnv "SYNCTHING_MOBILE_ID";
 			};
 			folders = {
 				keepass = {
