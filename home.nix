@@ -55,13 +55,14 @@
 			htop
 			cowsay
 			lolcat
-			neofetch
+			fastfetch
 
 			# Dev
 			python3
 			(sage.override { requireSageTests = false; })
 			zigpkgs.master
 			gnumake
+			jdk
 
 			# Fonts
 			jetbrains-mono
