@@ -43,9 +43,10 @@
 	users.users.${userInfo.name} = {
 		isNormalUser = true;
 		uid = 1000;
-		extraGroups = [ "wheel" "kvm" "adbusers" ];
+		extraGroups = [ "wheel" "kvm" "adbusers" "docker" ];
 		packages = with pkgs; [ home-manager ];
 	};
+	virtualisation.docker.enable = true;
 
 	environment.systemPackages = with pkgs; [
 		gcc

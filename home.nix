@@ -57,10 +57,11 @@
 			lolcat
 			neofetch
 
-			# Languages
+			# Dev
 			python3
 			(sage.override { requireSageTests = false; })
 			zigpkgs.master
+			gnumake
 
 			# Fonts
 			jetbrains-mono
