@@ -2,12 +2,12 @@ if [[ $1 = "sources" ]]; then
 		nix flake update
 
 elif [[ $1 = "os" ]]; then
-		nixos-rebuild build --flake .#portable
+		nixos-rebuild build --flake .#laptop
 		nvd diff /run/current-system ./result
 
 		read -p ":: Proceed with installation? [Y/n]: " confirm
 		if [[ "$confirm" == "" || "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
-				doas nixos-rebuild switch --flake .#portable
+				doas nixos-rebuild switch --flake .#laptop
 		else
 				echo ":: Installation Cancelled"
 				exit 2
@@ -21,7 +21,7 @@ elif [[ $1 = "home" ]]; then
 
 		read -p ":: Proceed with installation? [Y/n]: " confirm
 		if [[ "$confirm" == "" || "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
-				$DOAS home-manager switch --flake .
+				home-manager switch --flake .
 		else
 				echo ":: Installation Cancelled"
 		fi

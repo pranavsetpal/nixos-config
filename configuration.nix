@@ -1,5 +1,5 @@
-{ lib, inputs, pkgs, userInfo, ... }: {
-	system.stateVersion = "23.11";
+{ config, lib, pkgs, sysInfo, userInfo, ... }: {
+	system.stateVersion = "24.05";
 
 	imports = [
 		# Core services
@@ -8,8 +8,6 @@
 		./core/power.nix
 		./core/audio.nix
 		./core/bluetooth.nix
-		./core/printing.nix
-		./core/android.nix
 
 		# Selfhosted servers
 		./servers/unbound.nix
@@ -17,7 +15,8 @@
 		./servers/syncthing.nix # Requires SYNCTHING_MOBILE_ID set
 	];
 
-	time.timeZone = "Asia/Kolkata";
+	time.timeZone = "America/Fort_Wayne";
+	# time.timeZone = "Asia/Kolkata";
 
 	i18n.defaultLocale = "en_US.UTF-8";
 	# i18n.defaultLocale = "en_IN";
@@ -46,8 +45,12 @@
 		extraGroups = [ "wheel" "kvm" "adbusers" "docker" ];
 		packages = with pkgs; [ home-manager ];
 	};
+	programs.adb.enable = true;
 	virtualisation.docker.enable = true;
 
+	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+		"nvidia-x11" "nvidia-settings" "nvidia-persistenced"
+	];
 	environment.systemPackages = with pkgs; [
 		gcc
 		file
@@ -61,9 +64,7 @@
 	];
 	programs.nix-ld = {
 		enable = true;
-		libraries = with pkgs; [
-			stdenv.cc
-		];
+		libraries = with pkgs; [ stdenv.cc ];
 	};
 	documentation.dev.enable = true;
 

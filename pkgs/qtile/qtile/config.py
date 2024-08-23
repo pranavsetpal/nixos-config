@@ -1,6 +1,3 @@
-mod = "mod4"
-terminal = "kitty"
-
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
@@ -14,6 +11,24 @@ from libqtile import hook
 def autostart():
     subprocess.Popen([os.path.expanduser("~/.config/qtile/autostart.sh")])
 
+@lazy.function
+def window_to_previous_screen(qtile, switch_screen=False):
+    i = qtile.screens.index(qtile.current_screen)
+    if i != 0:
+        group = qtile.screens[i - 1].group.name
+        qtile.current_window.togroup(group)
+        if switch_screen == True:
+            qtile.cmd_to_screen(i - 1)
+
+@lazy.function
+def window_to_next_screen(qtile, switch_screen=False):
+    i = qtile.screens.index(qtile.current_screen)
+    if i + 1 != len(qtile.screens):
+        group = qtile.screens[i + 1].group.name
+        qtile.current_window.togroup(group)
+        if switch_screen == True:
+            qtile.cmd_to_screen(i + 1)
+
 wl_input_rules = {
     "type:keyboard": InputConfig(
         kb_layout="custom,us,us",
@@ -21,6 +36,9 @@ wl_input_rules = {
         kb_options="grp:alt_space_toggle"
     )
 };
+
+mod = "mod4"
+terminal = "kitty"
 
 keys = [
 	# Shortcuts
@@ -40,28 +58,32 @@ keys = [
 	Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
 	Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating state"),
 	Key([mod], "m", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen state"),
-	Key([mod, "Shift"], "m", lazy.hide_show_bar("top"), desc="Hide top bar"),
-
+	Key([mod, "Shift"], "m", lazy.hide_show_bar(), desc="Hide bottom bar"),
 
 	# Navigation
-	Key(["mod1"], "Tab", lazy.layout.next(), desc="Move window focus to other window"),
-	Key(["mod1", "Shift"], "Tab", lazy.layout.previous(), desc="Move window focus to other window"),
+    Key([mod], "period", lazy.next_screen(), desc="Switch focus to next monitor"),
+    Key([mod], "comma", lazy.prev_screen(), desc="Switch focus to previous monitor"),
 
-	Key([mod], "n", lazy.layout.left(), desc="Move focus to left"),
-	Key([mod], "o", lazy.layout.right(), desc="Move focus to right"),
+	Key([mod], "n", lazy.layout.left(), desc="Move focus left"),
+	Key([mod], "o", lazy.layout.right(), desc="Move focus right"),
 	Key([mod], "e", lazy.layout.down(), desc="Move focus down"),
 	Key([mod], "i", lazy.layout.up(), desc="Move focus up"),
 
-	Key([mod, "shift"], "n", lazy.layout.shuffle_left(), desc="Move window to the left"),
-	Key([mod, "shift"], "o", lazy.layout.shuffle_right(), desc="Move window to the right"),
+	Key([mod, "shift"], "n", lazy.layout.shuffle_left(), desc="Move window left"),
+	Key([mod, "shift"], "o", lazy.layout.shuffle_right(), desc="Move window right"),
 	Key([mod, "shift"], "e", lazy.layout.shuffle_down(), desc="Move window down"),
 	Key([mod, "shift"], "i", lazy.layout.shuffle_up(), desc="Move window up"),
 
-	Key([mod, "control"], "n", lazy.layout.grow_left(), desc="Grow window to the left"),
-	Key([mod, "control"], "o", lazy.layout.grow_right(), desc="Grow window to the right"),
+	Key([mod, "control"], "n", lazy.layout.grow_left(), desc="Grow window left"),
+	Key([mod, "control"], "o", lazy.layout.grow_right(), desc="Grow window right"),
 	Key([mod, "control"], "e", lazy.layout.grow_down(), desc="Grow window down"),
 	Key([mod, "control"], "i", lazy.layout.grow_up(), desc="Grow window up"),
 	Key([mod], "d", lazy.layout.normalize(), desc="Reset all window sizes"),
+
+    Key([mod, "control"], "period", window_to_next_screen(), desc="Move window to next screen"),
+    Key([mod, "control"], "comma", window_to_previous_screen(), desc="Move window to previous screen"),
+    Key([mod, "shift"], "period", window_to_next_screen(switch_screen=True), desc="Switch to * Move window to next screen"),
+    Key([mod, "shift"], "comma", window_to_previous_screen(switch_screen=True), desc="Switch to * Move window to previous screen"),
 
 
 	# Volume
@@ -122,10 +144,10 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 accent_color = "#61afef"
 
-screens = []
-for j in range(1):
-	screens.append(Screen(
-		top=bar.Bar(
+screens = [
+    Screen(),
+	Screen(
+		bottom=bar.Bar(
 			[
 				widget.Spacer(length=7),
 				widget.GroupBox(
@@ -163,13 +185,13 @@ for j in range(1):
 					format="{percent:1.0%}{char}",
 					charge_char="+",
 					discharge_char="-",
-					unknown_char="",
-					notify_below=5
+					unknown_char=""
 				),
 				widget.CurrentLayoutIcon(scale=0.80),
 			],
 		26)
-	))
+    ),
+]
 
 
 # Drag floating layouts.

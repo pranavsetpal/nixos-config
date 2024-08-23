@@ -1,6 +1,6 @@
-{ ... }: {
+{ sysInfo, ... }: {
 	networking = {
-		hostName = "portable";
+		hostName = sysInfo.hostname;
 		wireless.iwd = {
 			enable = true;
 			settings = {

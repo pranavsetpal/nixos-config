@@ -1,12 +1,12 @@
 { lib, pkgs, userInfo, zig-overlay, qtile, ... }: {
-	home.stateVersion = "23.11";
+	home.stateVersion = "24.05";
 	programs.home-manager.enable = true;
 	fonts.fontconfig.enable = true;
 
 	imports = [
 		./pkgs/neovim
 		./pkgs/git.nix
-		./pkgs/shell
+		./pkgs/bash
 		./pkgs/xdg.nix
 		./pkgs/qtile
 		./pkgs/xkb
@@ -16,9 +16,10 @@
 
 
 	nixpkgs = {
-		config.allowUnfreePredicate = pkg: builtins.elem(lib.getName pkg) [
+		config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 			"multiviewer-for-f1"
 			"obsidian"
+			"zoom"
 		];
 
 		overlays = [
@@ -46,6 +47,7 @@
 			vesktop
 			obs-studio
 			gimp
+			zoom-us
 
 			signal-desktop
 			cinny-desktop
@@ -59,7 +61,7 @@
 
 			# Dev
 			python3
-			(sage.override { requireSageTests = false; })
+			sage
 			zigpkgs.master
 			gnumake
 			jdk

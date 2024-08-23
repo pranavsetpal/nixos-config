@@ -18,25 +18,24 @@
 
 	outputs = { self, nixos-unstable, home-manager, zig-overlay, qtile, ... }:
 		let
-			system = "x86_64-linux";
-			pkgs = import nixos-unstable {
-				inherit system;
-				config.allowUnfreePredicate = pkg: builtins.elem(nixos-unstable.lib.getName pkg) [
-					"epson-201401w"
-				];
+			sysInfo = {
+				system = "x86_64-linux";
+				hostname = "laptop";
 			};
-
+			
 			userInfo = rec {
 				name = "pranav";
 				fullname = "pranavsetpal";
 				email = "pranav.setpal@gmail.com";
 				homedir = "/home/${name}";
 			};
+
+			pkgs = import nixos-unstable { system = sysInfo.system; };
 		in {
-			nixosConfigurations.portable = nixos-unstable.lib.nixosSystem {
-				system = system;
-				specialArgs = { inherit pkgs userInfo; };
-				modules = [ ./hardware-configuration/portable.nix ./configuration.nix ];
+			nixosConfigurations.${sysInfo.hostname} = nixos-unstable.lib.nixosSystem {
+				system = sysInfo.system;
+				specialArgs = { inherit sysInfo userInfo; };
+				modules = [ ./hardware-configuration/asus-ux8402vu.nix ./configuration.nix ];
 			};
 
 			homeConfigurations.${userInfo.name} = home-manager.lib.homeManagerConfiguration {
