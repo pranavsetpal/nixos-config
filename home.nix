@@ -1,4 +1,4 @@
-{ lib, pkgs, userInfo, zig-overlay, qtile, ... }: {
+{ lib, pkgs, userInfo, flake-overlays, qtile, ... }: {
 	home.stateVersion = "24.05";
 	programs.home-manager.enable = true;
 	fonts.fontconfig.enable = true;
@@ -12,19 +12,22 @@
 		./pkgs/xkb
 		./pkgs/kitty.nix
 		./pkgs/pipewire.nix
+
+		./pkgs/zathura.nix
 	];
 
 
 	nixpkgs = {
-		config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-			"multiviewer-for-f1"
-			"obsidian"
-			"zoom"
-		];
+		config = {
+			allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+				"multiviewer-for-f1"
+				"obsidian"
+				"zoom"
+			];
+			permittedInsecurePackages = [ "cinny-4.2.1" "cinny-unwrapped-4.2.1" ];
+		};
 
-		overlays = [
-			zig-overlay.overlays.default
-		];
+		overlays = flake-overlays;
 	};
 
 	home = {
@@ -35,22 +38,24 @@
 			# CLI & Maintainence
 			pavucontrol
 			pandoc
-			qpdf zathura
+			qpdf
 			ffmpeg feh mpv
 
 			# Applications
 			librewolf ungoogled-chromium
 			keepassxc
-			texliveMinimal
+			texliveFull
 			multiviewer-for-f1
 			obsidian
-			vesktop
-			obs-studio
+			libreoffice
 			gimp
+			obs-studio
 			zoom-us
 
 			signal-desktop
 			cinny-desktop
+			telegram-desktop
+			vesktop
 
 			# CLI Fun
 			tree
@@ -60,10 +65,10 @@
 			fastfetch
 
 			# Dev
-			python3
-			sage
-			zigpkgs.master
 			gnumake
+			zigpkgs.master
+			python3
+			sage fricas
 			jdk
 
 			# Fonts
