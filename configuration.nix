@@ -11,8 +11,8 @@
 
 		# Selfhosted servers
 		./servers/unbound.nix
-		./servers/searx.nix
 		./servers/syncthing.nix # Requires SYNCTHING_MOBILE_ID set
+		# ./servers/searx.nix # Using public instance instead
 	];
 
 	time.timeZone = "America/Fort_Wayne";
