@@ -19,6 +19,10 @@
 					path = "${userInfo.homedir}/.obsidian";
 					devices = [ "mobile" ];
 				};
+				purdue = {
+					path = "${userInfo.homedir}/documents/purdue";
+					devices = [ "mobile" ];
+				};
 				share = {
 					path = "${userInfo.homedir}/share/mobile";
 					devices = [ "mobile" ];
