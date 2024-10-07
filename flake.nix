@@ -31,6 +31,8 @@
 			};
 
 			pkgs = import nixos-unstable { system = sysInfo.system; };
+
+			flake-overlays = [ zig-overlay.overlays.default ];
 		in {
 			nixosConfigurations.${sysInfo.hostname} = nixos-unstable.lib.nixosSystem {
 				system = sysInfo.system;
@@ -40,7 +42,7 @@
 
 			homeConfigurations.${userInfo.name} = home-manager.lib.homeManagerConfiguration {
 				inherit pkgs;
-				extraSpecialArgs = { inherit userInfo zig-overlay qtile; };
+				extraSpecialArgs = { inherit userInfo flake-overlays qtile; };
 				modules = [ ./home.nix ];
 			};
 		};
