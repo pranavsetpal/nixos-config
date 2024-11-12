@@ -1,7 +1,7 @@
 { lib, pkgs, userInfo, qtile, ... }: {
 	home = {
 		packages = with pkgs; [
-			(python312Packages.qtile.overrideAttrs { src = qtile.outPath; version = "0.28.1+" + qtile.shortRev; })
+			(python312Packages.qtile.overrideAttrs { src = qtile.outPath; version = "0.29.0+" + qtile.shortRev; })
 			kanshi
 			bemenu
 			wl-clipboard

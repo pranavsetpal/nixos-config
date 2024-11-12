@@ -11,6 +11,7 @@
 		resolvconf = {
 			enable = true;
 			useLocalResolver = true;
+			extraConfig = "name_servers_append='1.1.1.1'\n";
 		};
 	};
 }

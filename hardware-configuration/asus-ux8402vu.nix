@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }: {
+{ config, lib, pkgs, modulesPath, sysInfo, ... }: {
 	imports = [ 
 		(modulesPath + "/installer/scan/not-detected.nix")
 		../core/graphics.nix
@@ -9,7 +9,6 @@
 	boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
 	boot.initrd.kernelModules = [ ];
 	boot.kernelModules = [ "kvm-intel" ];
-	boot.extraModulePackages = [ ];
 	boot.supportedFilesystems = [ "btrfs" ];
 
 	boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/d7ad892b-455f-4115-b0d5-c7fdcc3ed497";

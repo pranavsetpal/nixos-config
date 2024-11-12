@@ -95,8 +95,10 @@ keys = [
 	Key(["shift"], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 1%-"), desc="Decrease Mic Volume"),
 
 	#Brightness
-	Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +1%")),
-	Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 1%-")),
+	Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d intel_backlight set +1%")),
+	Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d intel_backlight set 1%-")),
+	Key(["mod1"], "XF86MonBrightnessUp", lazy.spawn("brightnessctl -d asus_screenpad set +1%")),
+	Key(["mod1"], "XF86MonBrightnessDown", lazy.spawn("brightnessctl -d asus_screenpad set 1%-")),
 
 	# Screenshot
 	Key([], "Print", lazy.spawn("slurp | grim -g - - | wl-copy", shell=True), desc="Copy interactive screenshot to clipboard"),

@@ -8,6 +8,7 @@
 		./core/power.nix
 		./core/audio.nix
 		./core/bluetooth.nix
+		./core/xserver.nix
 
 		# Selfhosted servers
 		./servers/unbound.nix
@@ -71,7 +72,7 @@
 	boot.tmp.cleanOnBoot = true;
 
 	nix = {
-		package = pkgs.nixFlakes;
+		package = pkgs.nixVersions.latest;
 		settings = {
 			experimental-features = [ "nix-command" "flakes" ];
 			auto-optimise-store = true;

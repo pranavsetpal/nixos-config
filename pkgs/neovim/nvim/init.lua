@@ -46,6 +46,9 @@ set.guicursor = ""
 set.number = true
 set.relativenumber = true
 
+-- Enable undo
+set.undofile = true
+
 -- Allow to use system clipboard
 map('', "<A-y>", '"+y')
 map('', "<A-p>", '"+p')

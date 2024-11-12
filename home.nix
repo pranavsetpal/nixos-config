@@ -3,6 +3,7 @@
 	programs.home-manager.enable = true;
 	fonts.fontconfig.enable = true;
 
+#
 	imports = [
 		./pkgs/neovim
 		./pkgs/git.nix
@@ -24,7 +25,7 @@
 				"obsidian"
 				"zoom"
 			];
-			permittedInsecurePackages = [ "cinny-4.2.1" "cinny-unwrapped-4.2.1" ];
+			permittedInsecurePackages = [ "cinny-4.2.2" "cinny-unwrapped-4.2.2" ];
 		};
 
 		overlays = flake-overlays;
@@ -51,6 +52,7 @@
 			gimp
 			obs-studio
 			zoom-us
+			qbittorrent
 
 			signal-desktop
 			cinny-desktop
@@ -68,7 +70,7 @@
 			gnumake
 			zigpkgs.master
 			python3
-			sage fricas
+			(sage.override { requireSageTests = false; }) fricas
 			jdk
 
 			# Fonts
