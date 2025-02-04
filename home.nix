@@ -1,19 +1,18 @@
-{ lib, pkgs, userInfo, flake-overlays, qtile, ... }: {
+{ lib, pkgs, userInfo, flake-overlays, ... }: {
 	home.stateVersion = "24.05";
 	programs.home-manager.enable = true;
 	fonts.fontconfig.enable = true;
 
-#
 	imports = [
+		./pkgs/gpg.nix
 		./pkgs/neovim
 		./pkgs/git.nix
 		./pkgs/bash
-		./pkgs/xdg.nix
 		./pkgs/qtile
 		./pkgs/xkb
+		./pkgs/xdg.nix
 		./pkgs/kitty.nix
 		./pkgs/pipewire.nix
-
 		./pkgs/zathura.nix
 	];
 
@@ -25,7 +24,7 @@
 				"obsidian"
 				"zoom"
 			];
-			permittedInsecurePackages = [ "cinny-4.2.2" "cinny-unwrapped-4.2.2" ];
+			permittedInsecurePackages = [ "cinny-${pkgs.cinny-desktop.version}" "cinny-unwrapped-${pkgs.cinny-desktop.version}" ];
 		};
 
 		overlays = flake-overlays;
@@ -45,8 +44,9 @@
 			# Applications
 			librewolf ungoogled-chromium
 			keepassxc
-			texliveFull
+			texliveFull python312Packages.pygments typst
 			multiviewer-for-f1
+			cmus
 			obsidian
 			libreoffice
 			gimp
@@ -56,8 +56,7 @@
 
 			signal-desktop
 			cinny-desktop
-			telegram-desktop
-			vesktop
+			(vesktop.override { withSystemVencord = true; })
 
 			# CLI Fun
 			tree
@@ -70,8 +69,10 @@
 			gnumake
 			zigpkgs.master
 			python3
-			(sage.override { requireSageTests = false; }) fricas
+			sage fricas
+			go
 			jdk
+			openssl
 
 			# Fonts
 			jetbrains-mono
@@ -87,8 +88,10 @@
 		# Setting session variables
 		sessionVariables = {
 			EDITOR = "nvim";
+			NIXOS_OZONE_WL=1;
 			# env_name = "env_val";
 		};
 	};
+
 	news.display = "silent";
 }

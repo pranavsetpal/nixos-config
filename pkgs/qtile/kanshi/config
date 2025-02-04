@@ -1,7 +1,0 @@
-output eDP-1 position 0,0 scale 1.5
-output DP-1 position 0,1200 scale 1.5
-
-profile default {
-	output eDP-1
-	output DP-1
-}

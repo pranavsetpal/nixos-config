@@ -32,6 +32,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+vim.cmd.colorscheme 'midnight'
+
 -- Set tab length
 set.tabstop = 4
 set.softtabstop = 4

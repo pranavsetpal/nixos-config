@@ -8,19 +8,16 @@
 			inputs.nixpkgs.follows = "nixos-unstable";
 		};
 
-		zig-overlay.url = "github:mitchellh/zig-overlay";
-		qtile = {
-			url = "github:qtile/qtile";
-			flake = false;
-		};
+		zig.url = "github:mitchellh/zig-overlay";
+		qtile.url = "github:qtile/qtile";
 	};
 
-	outputs = { self, nixos-unstable, home-manager, zig-overlay, qtile, ... }: let
+	outputs = { self, nixos-unstable, home-manager, zig, qtile, ... }: let
 		sysInfo = {
 			system = "x86_64-linux";
 			hostname = "laptop";
 		};
-		
+
 		userInfo = rec {
 			name = "pranav";
 			fullname = "pranavsetpal";
@@ -30,7 +27,7 @@
 
 		pkgs = import nixos-unstable { system = sysInfo.system; };
 
-		flake-overlays = [ zig-overlay.overlays.default ];
+		flake-overlays = [ zig.overlays.default qtile.overlays.default ];
 	in {
 		nixosConfigurations.${sysInfo.hostname} = nixos-unstable.lib.nixosSystem {
 			system = sysInfo.system;
@@ -40,7 +37,7 @@
 
 		homeConfigurations.${userInfo.name} = home-manager.lib.homeManagerConfiguration {
 			inherit pkgs;
-			extraSpecialArgs = { inherit userInfo flake-overlays qtile; };
+			extraSpecialArgs = { inherit userInfo flake-overlays; };
 			modules = [ ./home.nix ];
 		};
 	};

@@ -9,7 +9,7 @@ return {
 
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "asm", "c", "lua", "nix", "python", "zig" },
+			ensure_installed = { "asm", "c", "java", "lua", "latex", "nix", "python", "typst", "zig" },
 			highlight = { enable = true },
 		})
 	end,

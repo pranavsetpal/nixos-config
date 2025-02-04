@@ -9,7 +9,7 @@ from libqtile import hook
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.Popen([os.path.expanduser("~/.config/qtile/autostart.sh")])
+    subprocess.Popen([os.path.expanduser("~/.config/qtile/autostart_wayland.sh")])
 
 @lazy.function
 def window_to_previous_screen(qtile, switch_screen=False):
@@ -33,9 +33,9 @@ wl_input_rules = {
     "type:keyboard": InputConfig(
         kb_layout="custom,us,us",
         kb_variant="homerow_semicolon,colemak,",
-        kb_options="grp:alt_space_toggle"
+        kb_options="grp:alt_space_toggle,caps:backspace"
     )
-};
+}
 
 mod = "mod4"
 terminal = "kitty"
@@ -144,16 +144,14 @@ widget_defaults = dict(
 	padding=8
 )
 extension_defaults = widget_defaults.copy()
-accent_color = "#61afef"
+accent_color = "#50b0e0"
 
-screens = [
-    Screen(),
-	Screen(
+screens = [ Screen(
 		bottom=bar.Bar(
 			[
 				widget.Spacer(length=7),
 				widget.GroupBox(
-					highlight_color=["61afef", "282828"],
+                    highlight_color=[accent_color[1:], "282828"],
 					borderwidth=2,
 					margin_y=2,
 					padding=2
@@ -192,8 +190,8 @@ screens = [
 				widget.CurrentLayoutIcon(scale=0.80),
 			],
 		26)
-    ),
-]
+    )
+for _ in range(2) ]
 
 
 # Drag floating layouts.

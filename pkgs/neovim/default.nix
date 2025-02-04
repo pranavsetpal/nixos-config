@@ -2,10 +2,7 @@
 	programs.neovim.enable = true;
 	home = {
 		packages = with pkgs; [
-			ccls
-			ruff
-			zls
-
+			tree-sitter nodejs
 			unixtools.xxd # for hex.nvim
 		];
 

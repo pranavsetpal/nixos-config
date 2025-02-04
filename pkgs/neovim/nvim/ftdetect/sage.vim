@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.sage,*.spyx,*.pyx setfiletype python
+au BufRead,BufNewFile *.sage,*.spyx,*.pyx set filetype=python

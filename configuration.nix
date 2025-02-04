@@ -8,7 +8,7 @@
 		./core/power.nix
 		./core/audio.nix
 		./core/bluetooth.nix
-		./core/xserver.nix
+		./core/qtile.nix
 
 		# Selfhosted servers
 		./servers/unbound.nix
@@ -16,6 +16,7 @@
 		# ./servers/searx.nix # Using public instance instead
 	];
 
+	services.chrony.enable = true;
 	time.timeZone = "America/Fort_Wayne";
 	# time.timeZone = "Asia/Kolkata";
 
@@ -43,11 +44,10 @@
 	users.users.${userInfo.name} = {
 		isNormalUser = true;
 		uid = 1000;
-		extraGroups = [ "wheel" "kvm" "adbusers" "docker" ];
+		extraGroups = [ "wheel" "kvm" "adbusers" ];
 		packages = with pkgs; [ home-manager ];
 	};
 	programs.adb.enable = true;
-	virtualisation.docker.enable = true;
 
 	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
 		"nvidia-x11" "nvidia-settings" "nvidia-persistenced"

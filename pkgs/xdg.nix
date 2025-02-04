@@ -11,10 +11,10 @@
 
 		portal = {
 			enable = true;
-			extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
-			config.common.default = [ "wlr" "gtk" ];
+			extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+			config.common.default = [ "wlr" ];
 		};
 	};
 
-	home.sessionVariables.XDG_CURRENT_DESKTOP = "qtile:wlroots:gtk";
+	home.sessionVariables.XDG_CURRENT_DESKTOP = "qtile:wlroots";
 }

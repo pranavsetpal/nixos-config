@@ -8,6 +8,8 @@
 				bind '"\e[A":history-search-backward'
 				bind '"\e[B":history-search-forward'
 
+				[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
 				nixos-update() { (
 						cd ${userInfo.homedir}/.nixos &&
 						${lib.fileContents ./nixos-update.sh}
@@ -20,9 +22,7 @@
 			nix-direnv.enable = true;
 			enableBashIntegration = true;
 
-			config = {
-				global.hide_env_diff = true;
-			};
+			config = { global.hide_env_diff = true; };
 		};
 	};
 

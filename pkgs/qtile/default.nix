@@ -1,17 +1,14 @@
 { lib, pkgs, userInfo, qtile, ... }: {
 	home = {
 		packages = with pkgs; [
-			(python312Packages.qtile.overrideAttrs { src = qtile.outPath; version = "0.29.0+" + qtile.shortRev; })
-			kanshi
+			wlr-randr
 			bemenu
 			wl-clipboard
 			grim slurp
 			brightnessctl
 		];
 
-		file = {
-			".config/qtile" = { source = ./qtile; recursive = true; };
-			".config/kanshi" = { source = ./kanshi; recursive = true; };
-		};
+		file.".config/qtile" = { source = ./qtile; recursive = true; };
+		file.".xinitrc".source = ./xinitrc;
 	};
 }

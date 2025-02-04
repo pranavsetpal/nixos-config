@@ -8,6 +8,7 @@
 			enable = true;
 			efiSupport = true;
 			device = "nodev";
+			splashImage = null;
 		};
 		timeout = 1;
 	};
