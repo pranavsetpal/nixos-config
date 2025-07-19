@@ -19,7 +19,8 @@
 
 			# Colorscheme
 			foreground = "#b5bdc5"; selection_foreground = "none";
-			background = "#080c10"; selection_background = "none";
+			background = "#000000"; selection_background = "none";
+			# background = "#080c10"; selection_background = "none";
 			color0 = "#181818";
 			color1 = "#fa4d56";
 			color2 = "#42be65";

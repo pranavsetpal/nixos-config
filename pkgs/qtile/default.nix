@@ -1,6 +1,7 @@
-{ lib, pkgs, userInfo, qtile, ... }: {
+{ pkgs, ... }: {
 	home = {
 		packages = with pkgs; [
+			python313Packages.xlib
 			wlr-randr
 			bemenu
 			wl-clipboard

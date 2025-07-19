@@ -1,4 +1,4 @@
-{ lib, pkgs, userInfo, flake-overlays, ... }: {
+{ lib, pkgs, userInfo, home-overlays, ... }: {
 	home.stateVersion = "24.05";
 	programs.home-manager.enable = true;
 	fonts.fontconfig.enable = true;
@@ -16,7 +16,6 @@
 		./pkgs/zathura.nix
 	];
 
-
 	nixpkgs = {
 		config = {
 			allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -27,7 +26,7 @@
 			permittedInsecurePackages = [ "cinny-${pkgs.cinny-desktop.version}" "cinny-unwrapped-${pkgs.cinny-desktop.version}" ];
 		};
 
-		overlays = flake-overlays;
+		overlays = home-overlays;
 	};
 
 	home = {
@@ -35,30 +34,35 @@
 		homeDirectory = userInfo.homedir;
 
 		packages = with pkgs; [
-			# CLI & Maintainence
+			# CLI
 			pavucontrol
-			pandoc
-			qpdf
+			pandoc qpdf
 			ffmpeg feh mpv
+			rsync
+			cmus
+			openssl
+			simple-scan
 
 			# Applications
 			librewolf ungoogled-chromium
 			keepassxc
-			texliveFull python312Packages.pygments typst
+			texliveFull python312Packages.pygments
 			multiviewer-for-f1
-			cmus
-			obsidian
 			libreoffice
-			gimp
+			audacity
 			obs-studio
-			zoom-us
+			gimp
+			(zoom-us.override { pulseaudioSupport = false; xdgDesktopPortalSupport = false; })
+			obsidian
 			qbittorrent
 
+			thunderbird
 			signal-desktop
 			cinny-desktop
 			(vesktop.override { withSystemVencord = true; })
 
 			# CLI Fun
+			nix-tree
 			tree
 			htop
 			cowsay
@@ -66,18 +70,24 @@
 			fastfetch
 
 			# Dev
-			gnumake
+			gnumake gef
 			zigpkgs.master
 			python3
 			sage fricas
 			go
 			jdk
-			openssl
 
 			# Fonts
 			jetbrains-mono
 			fira-mono
 		];
+
+		pointerCursor = {
+			package = pkgs.vanilla-dmz;
+			name = "DMZ-Black";
+			size = 24;
+			gtk.enable = true;
+		};
 
 		# To add dotfiles not yet supported by home-manager
 		file = {
@@ -88,7 +98,6 @@
 		# Setting session variables
 		sessionVariables = {
 			EDITOR = "nvim";
-			NIXOS_OZONE_WL=1;
 			# env_name = "env_val";
 		};
 	};

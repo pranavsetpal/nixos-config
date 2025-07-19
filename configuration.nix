@@ -1,4 +1,4 @@
-{ config, lib, pkgs, sysInfo, userInfo, ... }: {
+{ config, lib, pkgs, sysInfo, userInfo, nixos-overlays, ... }: {
 	system.stateVersion = "24.05";
 
 	imports = [
@@ -8,6 +8,7 @@
 		./core/power.nix
 		./core/audio.nix
 		./core/bluetooth.nix
+		./core/printing.nix
 		./core/qtile.nix
 
 		# Selfhosted servers
@@ -16,15 +17,19 @@
 		# ./servers/searx.nix # Using public instance instead
 	];
 
-	services.chrony.enable = true;
-	time.timeZone = "America/Fort_Wayne";
-	# time.timeZone = "Asia/Kolkata";
+	services.chrony = {
+		enable = true;
+		# enableNTS = true;
+		# servers = [ "time.cloudfare.com" "104.16.132.229" ];
+	};
+	# time.timeZone = "America/Fort_Wayne";
+	time.timeZone = "Asia/Kolkata";
 
-	i18n.defaultLocale = "en_US.UTF-8";
-	# i18n.defaultLocale = "en_IN";
-	# i18n.defaultCharacterSet = "UTF-8";
+	i18n = {
+		defaultLocale = "en_US.UTF-8";
+		extraLocales = [ "en_IN/UTF-8" ];
+	};
 
-	# Custom keyboard layout for console
 	services.xserver.xkb = {
 		layout = "us";
 		variant = "colemak_dh";
@@ -49,17 +54,20 @@
 	};
 	programs.adb.enable = true;
 
-	nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-		"nvidia-x11" "nvidia-settings" "nvidia-persistenced"
-	];
+	nixpkgs = {
+		overlays = nixos-overlays;
+		config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+			"nvidia-x11" "nvidia-settings" "nvidia-persistenced"
+		];
+	};
 	environment.systemPackages = with pkgs; [
+		v4l-utils
+
 		gcc
 		file
 		killall
 		unzip
 		git
-
-		v4l-utils
 
 		man-pages man-pages-posix
 	];

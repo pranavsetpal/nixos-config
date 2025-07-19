@@ -3,12 +3,12 @@ if [[ $1 = "sources" ]]; then
 
 elif [[ $1 = "os" ]]; then
 	source .envrc
-	nixos-rebuild build --flake .#laptop --impure
+	nixos-rebuild build --impure --flake .#laptop
 	nvd diff /run/current-system ./result
 
 	read -p ":: Proceed with installation? [Y/n]: " confirm
 	if [[ "$confirm" == "" || "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
-		doas nixos-rebuild switch --flake .#laptop --impure
+		doas nixos-rebuild switch --impure --flake .#laptop
 	else
 		echo ":: Installation Cancelled"
 		exit 1
@@ -17,12 +17,12 @@ elif [[ $1 = "os" ]]; then
 	rm -rf ./result
 
 elif [[ $1 = "home" ]]; then
-	home-manager build --flake .
+	home-manager build --impure --flake .
 	nvd diff ../.nix-profile ./result
 
 	read -p ":: Proceed with installation? [Y/n]: " confirm
 	if [[ "$confirm" == "" || "$confirm" == [yY] || "$confirm" == [yY][eE][sS] ]]; then
-		home-manager switch --flake .
+		home-manager switch --impure --flake .
 	else
 		echo ":: Installation Cancelled"
 	fi

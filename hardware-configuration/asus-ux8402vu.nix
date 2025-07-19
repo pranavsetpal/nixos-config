@@ -11,41 +11,41 @@
 	boot.kernelModules = [ "kvm-intel" ];
 	boot.supportedFilesystems = [ "btrfs" ];
 
-	boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/d7ad892b-455f-4115-b0d5-c7fdcc3ed497";
+	boot.initrd.luks.devices."enc".device = "/dev/disk/by-label/SYSTEM_ENC";
 
 	fileSystems."/boot" =
-		{ device = "/dev/disk/by-uuid/5988-DAD9";
+		{ device = "/dev/disk/by-label/BOOT";
 			fsType = "vfat";
 			options = [ "fmask=0022" "dmask=0022" ];
 		};
 
 	fileSystems."/" =
-		{ device = "/dev/disk/by-uuid/7ed2f52a-ff33-46d9-a939-dc0d3d57f180";
+		{ device = "/dev/disk/by-label/SYSTEM";
 			fsType = "btrfs";
 			options = [ "subvol=root" "compress=zstd" "noatime" ];
 		};
 
 	fileSystems."/home" =
-		{ device = "/dev/disk/by-uuid/7ed2f52a-ff33-46d9-a939-dc0d3d57f180";
+		{ device = "/dev/disk/by-label/SYSTEM";
 			fsType = "btrfs";
 			options = [ "subvol=home" "compress=zstd" "noatime" ];
 		};
 
 	fileSystems."/nix" =
-		{ device = "/dev/disk/by-uuid/7ed2f52a-ff33-46d9-a939-dc0d3d57f180";
+		{ device = "/dev/disk/by-label/SYSTEM";
 			fsType = "btrfs";
 			options = [ "subvol=nix" "compress=zstd" "noatime" ];
 		};
 
 	fileSystems."/var/log" =
-		{ device = "/dev/disk/by-uuid/7ed2f52a-ff33-46d9-a939-dc0d3d57f180";
+		{ device = "/dev/disk/by-label/SYSTEM";
 			fsType = "btrfs";
 			options = [ "subvol=log" "compress=zstd" "noatime" ];
 			neededForBoot = true;
 		};
 
 	fileSystems."/swap" =
-		{ device = "/dev/disk/by-uuid/7ed2f52a-ff33-46d9-a939-dc0d3d57f180";
+		{ device = "/dev/disk/by-label/SYSTEM";
 			fsType = "btrfs";
 			options = [ "subvol=swap" "noatime" ];
 		};

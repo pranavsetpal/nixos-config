@@ -5,8 +5,8 @@ Either run
 ```shell
 cd ~/.nixos/
 doas nix flake update
-doas nixos-rebuild switch --flake .#portable
-home-manager switch --flake .
+doas nixos-rebuild switch --impure --flake .#portable
+home-manager switch --impure --flake .
 ```
 or the alias
 ```shell
