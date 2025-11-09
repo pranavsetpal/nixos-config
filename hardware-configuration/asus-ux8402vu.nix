@@ -5,6 +5,7 @@
 	];
 
 	boot.kernelPackages = pkgs.linuxPackages_latest;
+	# boot.kernelPackages = pkgs.linuxPackages_6_17;
 
 	boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "uas" "sd_mod" "rtsx_pci_sdmmc" ];
 	boot.initrd.kernelModules = [ ];

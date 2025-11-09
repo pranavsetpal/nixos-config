@@ -9,7 +9,7 @@ def window_to_previous_screen(qtile, switch_screen=False):
     if i != 0:
         group = qtile.screens[i - 1].group.name
         qtile.current_window.togroup(group)
-        if switch_screen == True:
+        if switch_screen:
             qtile.cmd_to_screen(i - 1)
 
 @lazy.function
@@ -18,7 +18,7 @@ def window_to_next_screen(qtile, switch_screen=False):
     if i + 1 != len(qtile.screens):
         group = qtile.screens[i + 1].group.name
         qtile.current_window.togroup(group)
-        if switch_screen == True:
+        if switch_screen:
             qtile.cmd_to_screen(i + 1)
 
 
@@ -26,10 +26,10 @@ wl_input_rules = {
     "type:keyboard": InputConfig(
         kb_layout="custom,us,us",
         kb_variant="homerow_semicolon,colemak,",
-        kb_options="grp:alt_space_toggle,caps:backspace"
+        kb_options="grp:rctrl_rshift_toggle,caps:backspace"
     )
 }
-wl_xcursor_size = 24;
+wl_xcursor_size = 24
 
 mod = "mod4"
 keys = [
@@ -50,6 +50,7 @@ keys = [
 	Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
 	Key([mod], "f", lazy.window.toggle_floating(), desc="Toggle floating state"),
 	Key([mod], "m", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen state"),
+	Key([mod], "v", lazy.window.toggle_minimize(), desc="Toggle minimize state"),
 	Key([mod, "Shift"], "m", lazy.hide_show_bar(), desc="Hide bottom bar"),
 
 	# Navigation

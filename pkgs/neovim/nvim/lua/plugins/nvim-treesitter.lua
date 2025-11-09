@@ -1,16 +1,21 @@
-return {
-	"nvim-treesitter/nvim-treesitter",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects"
-	},
-	build = function()
-		require("nvim-treesitter.install").update({ with_sync = true; })
-	end,
+local autocmd = vim.api.nvim_create_autocmd
+local filetypes = { "asm", "c", "java", "lua", "nix", "python", "rust", "zig" }
 
-	config = function()
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "asm", "c", "java", "lua", "latex", "nix", "python", "zig" },
-			highlight = { enable = true },
-		})
-	end,
-}
+vim.pack.add({{
+	src = "https://github.com/nvim-treesitter/nvim-treesitter",
+	version = "main",
+	data = {
+		run = function() vim.cmd("TSUpdate") end,
+	},
+}})
+
+require("nvim-treesitter").install(filetypes)
+
+-- Enable Treesitter Syntax Highlighting
+autocmd("FileType", {
+	pattern = filetypes,
+	callback = function() vim.treesitter.start() end,
+})
+
+-- Use Treesitter folding
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

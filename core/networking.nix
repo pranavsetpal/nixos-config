@@ -11,6 +11,7 @@
 		resolvconf = {
 			enable = true;
 			useLocalResolver = true;
+			extraConfig = ''resolv_conf_local_only=NO'';
 		};
 	};
 }

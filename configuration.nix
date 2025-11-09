@@ -22,8 +22,8 @@
 		# enableNTS = true;
 		# servers = [ "time.cloudfare.com" "104.16.132.229" ];
 	};
-	# time.timeZone = "America/Fort_Wayne";
-	time.timeZone = "Asia/Kolkata";
+	time.timeZone = "America/Fort_Wayne";
+	# time.timeZone = "Asia/Kolkata";
 
 	i18n = {
 		defaultLocale = "en_US.UTF-8";
@@ -76,6 +76,7 @@
 		libraries = with pkgs; [ stdenv.cc ];
 	};
 	documentation.dev.enable = true;
+	programs.ssh.package = pkgs.openssh_10_2;
 
 	boot.tmp.cleanOnBoot = true;
 

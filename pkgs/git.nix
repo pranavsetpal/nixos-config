@@ -1,8 +1,10 @@
 { userInfo, ... }: {
 	programs.git = {
 		enable = true;
-		userName = userInfo.fullname;
-		userEmail = userInfo.email;
+		settings.user = {
+			name = userInfo.fullname;
+			email = userInfo.email;
+		};
 		signing = {
 			key = builtins.getEnv "GPG_SIGNING_KEY";
 			signByDefault = true;

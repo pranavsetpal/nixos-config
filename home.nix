@@ -22,8 +22,8 @@
 				"multiviewer-for-f1"
 				"obsidian"
 				"zoom"
+				"slack"
 			];
-			permittedInsecurePackages = [ "cinny-${pkgs.cinny-desktop.version}" "cinny-unwrapped-${pkgs.cinny-desktop.version}" ];
 		};
 
 		overlays = home-overlays;
@@ -34,7 +34,7 @@
 		homeDirectory = userInfo.homedir;
 
 		packages = with pkgs; [
-			# CLI
+			# Tools
 			pavucontrol
 			pandoc qpdf
 			ffmpeg feh mpv
@@ -42,12 +42,19 @@
 			cmus
 			openssl
 			simple-scan
+			scrcpy
 
 			# Applications
 			librewolf ungoogled-chromium
 			keepassxc
 			texliveFull python312Packages.pygments
-			multiviewer-for-f1
+			(multiviewer-for-f1.overrideAttrs {
+				version = "2.2.1";
+				src = fetchurl {
+					url = "https://releases.multiviewer.app/download/295039426/multiviewer_2.2.1_amd64.deb";
+					sha256 = "sha256-y40LJVjnkvIxElDooF5xNmpkeVCRRS30o/nvqZnmH+I=";
+				};
+			})
 			libreoffice
 			audacity
 			obs-studio
@@ -56,10 +63,9 @@
 			obsidian
 			qbittorrent
 
-			thunderbird
 			signal-desktop
-			cinny-desktop
 			(vesktop.override { withSystemVencord = true; })
+			slack
 
 			# CLI Fun
 			nix-tree
@@ -70,12 +76,13 @@
 			fastfetch
 
 			# Dev
-			gnumake gef
-			zigpkgs.master
-			python3
-			sage fricas
-			go
-			jdk
+			/* c */ gnumake gef clang-tools
+			/* go */ go
+			/* java */ jdk
+			/* lua */ lua-language-server
+			/* python */ python3 pwntools ruff (sage.override { requireSageTests = false; }) fricas
+			/* rust */ fenix.latest.toolchain
+			/* zig */ zigpkgs.master zls-flake
 
 			# Fonts
 			jetbrains-mono

@@ -10,6 +10,10 @@
 
 				[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
+				vcp() {
+					ssh -p ${builtins.getEnv "VCP_PORT"} $1@${builtins.getEnv "VCP_IP"}
+				}
+
 				nixos-update() { (
 						cd ${userInfo.homedir}/.nixos &&
 						${lib.fileContents ./nixos-update.sh}

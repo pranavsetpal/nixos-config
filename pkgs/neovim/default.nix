@@ -1,9 +1,11 @@
-{ lib, pkgs, ... }: {
-	programs.neovim.enable = true;
+{ pkgs, ... }: {
+	programs.neovim = {
+		enable = true;
+		package = pkgs.neovim-flake;
+	};
 	home = {
 		packages = with pkgs; [
 			tree-sitter nodejs
-			ccls ruff # zls
 			unixtools.xxd # for hex.nvim
 		];
 
